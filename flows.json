@@ -7,9 +7,23 @@
         "info": ""
     },
     {
+        "id": "23b558b.7cae4a8",
+        "type": "tab",
+        "label": "Still Settings",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "4c830eaa.25d9d",
         "type": "tab",
         "label": "TimeLapse Image",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4130e736.f7d8f8",
+        "type": "tab",
+        "label": "TimeLapse Settings",
         "disabled": false,
         "info": ""
     },
@@ -21,17 +35,17 @@
         "info": ""
     },
     {
-        "id": "23b558b.7cae4a8",
+        "id": "43d9f0b1.29583",
         "type": "tab",
-        "label": "Still Settings",
-        "disabled": false,
+        "label": "Movie Image",
+        "disabled": true,
         "info": ""
     },
     {
-        "id": "4130e736.f7d8f8",
+        "id": "b8390319.95ab",
         "type": "tab",
-        "label": "TimeLapse Settings",
-        "disabled": false,
+        "label": "Movie Settings",
+        "disabled": true,
         "info": ""
     },
     {
@@ -167,7 +181,7 @@
         "id": "d331f05e.b54d3",
         "type": "ui_tab",
         "z": "",
-        "name": "YggCam",
+        "name": "SingleShot",
         "icon": "dashboard",
         "order": 1
     },
@@ -188,14 +202,14 @@
         "z": "",
         "name": "Settings",
         "icon": "dashboard",
-        "order": 2
+        "order": 4
     },
     {
         "id": "2109abd1.7997a4",
         "type": "ui_group",
         "z": "",
         "name": "Still Settings",
-        "tab": "a73cf538.7403b8",
+        "tab": "d331f05e.b54d3",
         "order": 2,
         "disp": true,
         "width": "6",
@@ -213,25 +227,74 @@
         "collapse": false
     },
     {
+        "id": "a09e9315.ae729",
+        "type": "ui_group",
+        "z": "",
+        "name": "Timelapse",
+        "tab": "3bda1a23.191ae6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "ed062e51.57946",
         "type": "ui_group",
         "z": "",
         "name": "Timelapse Settings",
-        "tab": "a73cf538.7403b8",
+        "tab": "3bda1a23.191ae6",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "8e5e25d9.a83308",
+        "type": "ui_group",
+        "z": "",
+        "name": "Movie Settings",
+        "tab": "4ae97ecc.60f15",
         "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false
     },
     {
-        "id": "a09e9315.ae729",
+        "id": "e30ec498.e5ecc8",
         "type": "ui_group",
         "z": "",
-        "name": "Timelapse",
-        "tab": "d331f05e.b54d3",
+        "name": "Movie",
+        "tab": "4ae97ecc.60f15",
         "order": 2,
         "disp": true,
-        "width": "6",
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "3bda1a23.191ae6",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Timelapse",
+        "icon": "dashboard",
+        "order": 2
+    },
+    {
+        "id": "4ae97ecc.60f15",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Movie",
+        "icon": "dashboard",
+        "order": 3
+    },
+    {
+        "id": "55578abb.5b8b84",
+        "type": "ui_group",
+        "z": "",
+        "name": "Image Display",
+        "tab": "3bda1a23.191ae6",
+        "order": 3,
+        "disp": false,
+        "width": "12",
         "collapse": false
     },
     {
@@ -269,8 +332,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1200,
-        "y": 220,
+        "x": 1280,
+        "y": 360,
         "wires": [
             []
         ]
@@ -293,15 +356,15 @@
         "id": "bc3e5f27.8e775",
         "type": "function",
         "z": "465cfd27.107674",
-        "name": "Add Timestamp",
-        "func": "if (msg.payload.code == 0) \n{\n    var timestamp = new Date();\n    var imageName = '/latest.jpg?time=' + timestamp.getTime().toString();\n    var newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':timestamp.toLocaleString()}};\n    return newMsg;\n}\nreturn null;",
+        "name": "getStillCounter",
+        "func": "msg.payload = global.get('stillImageCounter');\nmsg.topic = 'displayValue';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1160,
-        "y": 140,
+        "x": 1200,
+        "y": 60,
         "wires": [
             [
-                "79057734.fe6ba8"
+                "dd215dc9.e71ff"
             ]
         ]
     },
@@ -1775,13 +1838,13 @@
         "timer": "",
         "oldrc": false,
         "name": "Copy to stills",
-        "x": 930,
+        "x": 1010,
         "y": 60,
         "wires": [
             [],
             [],
             [
-                "c2767645.2a3e98"
+                "bc3e5f27.8e775"
             ]
         ]
     },
@@ -1828,7 +1891,14 @@
             "a1cb2b65.d77838",
             "88fcf382.3dcb1",
             "69aab70f.9c4088",
-            "8c565e3b.2ecd9"
+            "8c565e3b.2ecd9",
+            "48aa4cf4.e4d044",
+            "a1f29fa6.01c5e",
+            "3ec76667.52135a",
+            "d16dd76c.35aa58",
+            "f25b68ed.28adb8",
+            "b464c768.661858",
+            "1da9c207.8c0e3e"
         ],
         "x": 275,
         "y": 220,
@@ -1840,7 +1910,8 @@
         "z": "e863d654.dd1238",
         "name": "Receive Init",
         "links": [
-            "d4bbd794.b49c98"
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
         ],
         "x": 195,
         "y": 320,
@@ -1856,7 +1927,8 @@
         "z": "23b558b.7cae4a8",
         "name": "Receive Init",
         "links": [
-            "d4bbd794.b49c98"
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
         ],
         "x": 195,
         "y": 60,
@@ -1887,18 +1959,6 @@
         ]
     },
     {
-        "id": "c2767645.2a3e98",
-        "type": "subflow:b0e801e.0db82",
-        "z": "465cfd27.107674",
-        "x": 1110,
-        "y": 60,
-        "wires": [
-            [
-                "bc3e5f27.8e775"
-            ]
-        ]
-    },
-    {
         "id": "2fadadf4.343c22",
         "type": "ui_text",
         "z": "465cfd27.107674",
@@ -1907,11 +1967,11 @@
         "width": "3",
         "height": "1",
         "name": "Still Counter",
-        "label": "Image",
+        "label": "Last Image",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 910,
-        "y": 180,
+        "x": 990,
+        "y": 220,
         "wires": []
     },
     {
@@ -2015,7 +2075,7 @@
         "appendNewline": false,
         "createDir": false,
         "overwriteFile": "true",
-        "x": 930,
+        "x": 990,
         "y": 120,
         "wires": []
     },
@@ -2028,8 +2088,8 @@
         "format": "lines",
         "chunk": false,
         "sendError": false,
-        "x": 400,
-        "y": 240,
+        "x": 380,
+        "y": 260,
         "wires": [
             [
                 "179a927c.367ace"
@@ -2041,14 +2101,14 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Store Still counter",
-        "func": "global.set('stillImageCounter', msg.payload);\nreturn msg;",
+        "func": "global.set('stillImageCounter', msg.payload);\nmsg.topic = 'displayValue';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 590,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
-                "2fadadf4.343c22"
+                "8ab40235.9f40c"
             ]
         ]
     },
@@ -2063,8 +2123,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Clear stills directory",
-        "x": 350,
-        "y": 400,
+        "x": 590,
+        "y": 720,
         "wires": [
             [],
             [],
@@ -2079,15 +2139,14 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Reset Still counter",
-        "func": "global.set('stillImageCounter', '0000');\nreturn {'topic':'stillImageCounter','payload':'0000'};",
+        "func": "global.set('stillImageCounter', '0000');\nreturn {'topic':'displayValue','payload':'0000'};",
         "outputs": 1,
         "noerr": 0,
-        "x": 610,
-        "y": 400,
+        "x": 850,
+        "y": 720,
         "wires": [
             [
-                "c0e3dd95.24f7b",
-                "2fadadf4.343c22"
+                "e8d4d65e.9e0298"
             ]
         ]
     },
@@ -2155,8 +2214,8 @@
         "z": "465cfd27.107674",
         "name": "Export",
         "group": "5119bf0d.949f3",
-        "order": 3,
-        "width": "3",
+        "order": 7,
+        "width": "6",
         "height": "1",
         "passthru": false,
         "label": "Export",
@@ -2166,8 +2225,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 110,
-        "y": 720,
+        "x": 350,
+        "y": 920,
         "wires": [
             [
                 "7008e74d.541f58",
@@ -2181,8 +2240,8 @@
         "z": "465cfd27.107674",
         "name": "Erase",
         "group": "5119bf0d.949f3",
-        "order": 4,
-        "width": "3",
+        "order": 8,
+        "width": "6",
         "height": "1",
         "passthru": false,
         "label": "Erase",
@@ -2192,8 +2251,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 110,
-        "y": 400,
+        "x": 350,
+        "y": 720,
         "wires": [
             [
                 "5673cd26.1098b4",
@@ -2209,8 +2268,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 540,
-        "y": 500,
+        "x": 780,
+        "y": 820,
         "wires": [
             [
                 "98bd47d5.4bc608"
@@ -2225,8 +2284,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 540,
-        "y": 460,
+        "x": 780,
+        "y": 780,
         "wires": [
             [
                 "98bd47d5.4bc608"
@@ -2244,8 +2303,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Zip Stills",
-        "x": 740,
-        "y": 700,
+        "x": 980,
+        "y": 900,
         "wires": [
             [],
             [],
@@ -2262,8 +2321,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 500,
-        "y": 840,
+        "x": 540,
+        "y": 980,
         "wires": [
             [
                 "f6a819d7.be6028"
@@ -2278,8 +2337,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 920,
-        "y": 760,
+        "x": 1160,
+        "y": 960,
         "wires": [
             [
                 "f6a819d7.be6028"
@@ -2297,8 +2356,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 310,
-        "y": 720,
+        "x": 550,
+        "y": 920,
         "wires": [
             [
                 "2941db3.3e69e24"
@@ -2315,8 +2374,8 @@
         "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nfor (var ii = 0; ii < split.length; ++ii)\n{\n    if (split[ii] != '')\n        if(split[ii] != '/media/pi:')\n            if(split[ii] != 'yggCamData')\n               usbStick = '/media/pi/' + split[ii] + '/stills.zip'; \n}\nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/yggCamData/images/stills'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
         "outputs": 2,
         "noerr": 0,
-        "x": 500,
-        "y": 700,
+        "x": 740,
+        "y": 900,
         "wires": [
             [
                 "40c4814c.8e25a"
@@ -2338,8 +2397,8 @@
         "cancel": "",
         "topic": "Missing USB Stick",
         "name": "Missing USB Stick",
-        "x": 710,
-        "y": 760,
+        "x": 950,
+        "y": 960,
         "wires": [
             [
                 "92bbd65e.8af508"
@@ -2362,7 +2421,7 @@
         "id": "f2505e1a.73902",
         "type": "link in",
         "z": "465cfd27.107674",
-        "name": "Still Button Enable",
+        "name": "",
         "links": [
             "ab05a80d.938a48"
         ],
@@ -2382,20 +2441,20 @@
         "links": [
             "1ad3e821.09b9a8"
         ],
-        "x": 1035,
-        "y": 780,
+        "x": 1295,
+        "y": 960,
         "wires": []
     },
     {
         "id": "1ad3e821.09b9a8",
         "type": "link in",
         "z": "465cfd27.107674",
-        "name": "Export Button Enable",
+        "name": "",
         "links": [
             "f6a819d7.be6028"
         ],
-        "x": 75,
-        "y": 800,
+        "x": 255,
+        "y": 920,
         "wires": [
             [
                 "1b73d65.99f212a"
@@ -2410,8 +2469,8 @@
         "links": [
             "c95a1ca8.e9862"
         ],
-        "x": 655,
-        "y": 480,
+        "x": 895,
+        "y": 800,
         "wires": []
     },
     {
@@ -2422,8 +2481,8 @@
         "links": [
             "98bd47d5.4bc608"
         ],
-        "x": 75,
-        "y": 460,
+        "x": 215,
+        "y": 720,
         "wires": [
             [
                 "f232ecc8.ecafe"
@@ -2737,7 +2796,8 @@
         "z": "4130e736.f7d8f8",
         "name": "Receive Init",
         "links": [
-            "d4bbd794.b49c98"
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
         ],
         "x": 195,
         "y": 240,
@@ -2829,8 +2889,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 90,
-        "y": 320,
+        "x": 250,
+        "y": 60,
         "wires": [
             [
                 "c1b4368c.83a088"
@@ -2846,8 +2906,8 @@
         "format": "lines",
         "chunk": false,
         "sendError": false,
-        "x": 560,
-        "y": 540,
+        "x": 320,
+        "y": 240,
         "wires": [
             [
                 "ba4e4770.b3b0f8"
@@ -2859,14 +2919,14 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Store timelapse counter",
-        "func": "global.set('timelapseCounter', msg.payload);\nreturn msg;",
+        "func": "global.set('timelapseCounter', msg.payload);\nmsg.topic = 'displayValue'\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 790,
-        "y": 540,
+        "x": 550,
+        "y": 240,
         "wires": [
             [
-                "b651eb36.a7b468"
+                "bf422c55.51687"
             ]
         ]
     },
@@ -2876,10 +2936,11 @@
         "z": "4c830eaa.25d9d",
         "name": "Init",
         "links": [
-            "d4bbd794.b49c98"
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
         ],
-        "x": 395,
-        "y": 540,
+        "x": 155,
+        "y": 240,
         "wires": [
             [
                 "7c6bf932.2a4578"
@@ -2898,8 +2959,8 @@
         "label": "Image",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1030,
-        "y": 540,
+        "x": 1350,
+        "y": 240,
         "wires": []
     },
     {
@@ -2911,8 +2972,8 @@
         "appendNewline": false,
         "createDir": false,
         "overwriteFile": "true",
-        "x": 1050,
-        "y": 500,
+        "x": 1590,
+        "y": 120,
         "wires": []
     },
     {
@@ -2923,8 +2984,8 @@
         "func": "var loopRunning = flow.get('loopRunning');\nif (loopRunning)\n{\n    flow.set('loopRunning',!loopRunning);\n    return [msg,null];   \n}\nelse\n{\n    flow.set('loopRunning',!loopRunning);\n    var cameraSettings = global.get('cameraSettings');\n    var timelapseSettings = global.get('timelapseSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in timelapseSettings)\n    {\n        if (timelapseSettings[key].enabled && key != 'd')\n        {\n            commandString = commandString + ' -'+ key + ' ' + timelapseSettings[key].value;\n        }\n    }\n    commandString = commandString + ' -o /media/pi/yggCamData/images/latest.jpg';\n    flow.set('commandLineArgs',commandString);\n    var maxImages = Math.round((timelapseSettings['d'].value) / (Number(timelapseSettings['t'].value) / 1000));\n    flow.set('maxImages', maxImages);\n    return [null,msg];    \n}\n\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 260,
-        "y": 320,
+        "x": 420,
+        "y": 60,
         "wires": [
             [
                 "e3d16b59.b3c0f8"
@@ -2942,8 +3003,8 @@
         "func": "var timelapseCounter = global.get('timelapseCounter');\nvar counter = Number(timelapseCounter);\nif (msg.payload.code == 0) counter = counter + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\ntimelapseCounter = prefix + counter.toString();\nglobal.set('timelapseCounter', timelapseCounter);\nvar currentCount = {'topic':'timelapseCounter','payload':timelapseCounter};\nmsg.payload = '/media/pi/yggCamData/images/timelapse/image' + timelapseCounter + '.jpg';\nreturn [msg, currentCount];",
         "outputs": 2,
         "noerr": 0,
-        "x": 1000,
-        "y": 440,
+        "x": 1080,
+        "y": 200,
         "wires": [
             [
                 "fa45f563.125c08"
@@ -2965,13 +3026,14 @@
         "timer": "",
         "oldrc": false,
         "name": "Copy to timelapse",
-        "x": 1230,
-        "y": 420,
+        "x": 1350,
+        "y": 160,
         "wires": [
             [],
             [],
             [
-                "a0b6fb97.07c7b8"
+                "a0b6fb97.07c7b8",
+                "6666a910.300bd8"
             ]
         ]
     },
@@ -3002,28 +3064,6 @@
         "wires": [
             [
                 "49c5ddda.ac2454"
-            ]
-        ]
-    },
-    {
-        "id": "9b0e3dad.d0bc",
-        "type": "ui_text_input",
-        "z": "4130e736.f7d8f8",
-        "name": "t-value",
-        "label": "Delay Time (sec) 1 or greater",
-        "group": "ed062e51.57946",
-        "order": 1,
-        "width": "5",
-        "height": "1",
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "t-value",
-        "x": 710,
-        "y": 140,
-        "wires": [
-            [
-                "c039a804.a62718"
             ]
         ]
     },
@@ -3073,8 +3113,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Clear timelapse directory",
-        "x": 470,
-        "y": 340,
+        "x": 630,
+        "y": 80,
         "wires": [
             [],
             [],
@@ -3091,8 +3131,8 @@
         "func": "global.set('timelapseCounter', '0000');\nreturn {'topic':'timelapseCounter','payload':'0000'};",
         "outputs": 1,
         "noerr": 0,
-        "x": 730,
-        "y": 340,
+        "x": 890,
+        "y": 80,
         "wires": [
             [
                 "46a22b24.4f8a44"
@@ -3107,8 +3147,8 @@
         "func": "var timelapseButton = {'topic':'Timelapse','payload':''}\nvar loopRunning = flow.get('loopRunning');\nif (!loopRunning)\n{\n    return [timelapseButton,null];\n}\nvar timelapseCounter = global.get('timelapseCounter');\nvar maxImages = flow.get('maxImages');\nvar counter = Number(timelapseCounter);\nvar commandLineArgs = flow.get('commandLineArgs');\nif (counter >= maxImages)\n{\n    msg = null;\n}\nelse\n{\n    msg.payload = commandLineArgs;    \n    timelapseButton.topic = 'Abort'\n}\n\nreturn [timelapseButton,msg];",
         "outputs": 2,
         "noerr": 0,
-        "x": 940,
-        "y": 340,
+        "x": 1100,
+        "y": 80,
         "wires": [
             [
                 "6b13485f.9d4da8"
@@ -3129,8 +3169,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Run Camera",
-        "x": 1130,
-        "y": 340,
+        "x": 1290,
+        "y": 80,
         "wires": [
             [],
             [],
@@ -3145,42 +3185,23 @@
         "z": "4c830eaa.25d9d",
         "name": "Refresh Image Display",
         "links": [
-            "3ec76667.52135a",
             "e4553bbb.06f808"
         ],
-        "x": 1320,
-        "y": 520,
+        "x": 1495,
+        "y": 200,
         "wires": []
-    },
-    {
-        "id": "3ec76667.52135a",
-        "type": "link in",
-        "z": "465cfd27.107674",
-        "name": "Image Display Refreshed",
-        "links": [
-            "a0b6fb97.07c7b8",
-            "15cb6c39.2bdb44"
-        ],
-        "x": 1000,
-        "y": 260,
-        "wires": [
-            [
-                "bc3e5f27.8e775"
-            ]
-        ]
     },
     {
         "id": "e4553bbb.06f808",
         "type": "link in",
         "z": "4c830eaa.25d9d",
-        "name": "Continue the loop",
+        "name": "",
         "links": [
             "a0b6fb97.07c7b8",
-            "15cb6c39.2bdb44",
             "e3d16b59.b3c0f8"
         ],
-        "x": 780,
-        "y": 440,
+        "x": 925,
+        "y": 120,
         "wires": [
             [
                 "46a22b24.4f8a44"
@@ -3195,20 +3216,20 @@
         "links": [
             "b73e7c5c.a58ae"
         ],
-        "x": 1060,
-        "y": 240,
+        "x": 1245,
+        "y": 40,
         "wires": []
     },
     {
         "id": "b73e7c5c.a58ae",
         "type": "link in",
         "z": "4c830eaa.25d9d",
-        "name": "Timelapse Button changed",
+        "name": "",
         "links": [
             "6b13485f.9d4da8"
         ],
-        "x": 80,
-        "y": 240,
+        "x": 125,
+        "y": 60,
         "wires": [
             [
                 "f20f1ee8.db282"
@@ -3221,10 +3242,11 @@
         "z": "4c830eaa.25d9d",
         "name": "Init",
         "links": [
-            "d4bbd794.b49c98"
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
         ],
-        "x": 100,
-        "y": 480,
+        "x": 155,
+        "y": 180,
         "wires": [
             [
                 "a587fca6.92b5c"
@@ -3239,8 +3261,8 @@
         "func": "flow.set('loopRunning',false);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 240,
-        "y": 480,
+        "x": 300,
+        "y": 180,
         "wires": [
             []
         ]
@@ -3253,8 +3275,8 @@
         "links": [
             "e4553bbb.06f808"
         ],
-        "x": 415,
-        "y": 220,
+        "x": 585,
+        "y": 40,
         "wires": []
     },
     {
@@ -3263,8 +3285,8 @@
         "z": "4c830eaa.25d9d",
         "name": "Export",
         "group": "a09e9315.ae729",
-        "order": 3,
-        "width": "3",
+        "order": 7,
+        "width": "6",
         "height": "1",
         "passthru": false,
         "label": "Export",
@@ -3274,8 +3296,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 110,
-        "y": 920,
+        "x": 250,
+        "y": 960,
         "wires": [
             [
                 "4a832090.e517a",
@@ -3294,8 +3316,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Zip Stills",
-        "x": 740,
-        "y": 900,
+        "x": 880,
+        "y": 940,
         "wires": [
             [],
             [],
@@ -3312,8 +3334,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 500,
-        "y": 1040,
+        "x": 640,
+        "y": 1080,
         "wires": [
             [
                 "20152733.38cda8"
@@ -3328,8 +3350,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 920,
-        "y": 960,
+        "x": 1060,
+        "y": 1000,
         "wires": [
             [
                 "20152733.38cda8"
@@ -3347,8 +3369,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 310,
-        "y": 920,
+        "x": 450,
+        "y": 960,
         "wires": [
             [
                 "40100dc3.233a64"
@@ -3365,8 +3387,8 @@
         "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nfor (var ii = 0; ii < split.length; ++ii)\n{\n    if (split[ii] != '')\n        if(split[ii] != '/media/pi:')\n            if(split[ii] != 'yggCamData')\n               usbStick = '/media/pi/' + split[ii] + '/timelapse.zip'; \n}\nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/yggCamData/images/timelapse'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
         "outputs": 2,
         "noerr": 0,
-        "x": 500,
-        "y": 900,
+        "x": 640,
+        "y": 940,
         "wires": [
             [
                 "d3cb13bd.9fe12"
@@ -3388,8 +3410,8 @@
         "cancel": "",
         "topic": "Missing USB Stick",
         "name": "Missing USB Stick",
-        "x": 710,
-        "y": 960,
+        "x": 850,
+        "y": 1000,
         "wires": [
             [
                 "ff267117.cccf1"
@@ -3404,20 +3426,20 @@
         "links": [
             "b77bcad8.fcf618"
         ],
-        "x": 1035,
-        "y": 980,
+        "x": 1175,
+        "y": 1020,
         "wires": []
     },
     {
         "id": "b77bcad8.fcf618",
         "type": "link in",
         "z": "4c830eaa.25d9d",
-        "name": "Export Button Enable",
+        "name": "",
         "links": [
             "20152733.38cda8"
         ],
-        "x": 75,
-        "y": 1000,
+        "x": 145,
+        "y": 960,
         "wires": [
             [
                 "6fe3ee30.2b024"
@@ -3435,8 +3457,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Clear timelapse directory",
-        "x": 430,
-        "y": 660,
+        "x": 570,
+        "y": 700,
         "wires": [
             [],
             [],
@@ -3451,15 +3473,14 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Reset timelapse counter",
-        "func": "global.set('timelapseCounter', '0000');\nreturn {'topic':'timelapseCounter','payload':'0000'};",
+        "func": "global.set('timelapseCounter', '0000');\nreturn {'topic':'displayValue','payload':'0000'};",
         "outputs": 1,
         "noerr": 0,
-        "x": 690,
-        "y": 660,
+        "x": 830,
+        "y": 700,
         "wires": [
             [
-                "48798c01.ab5e94",
-                "b651eb36.a7b468"
+                "aa62bfeb.4e782"
             ]
         ]
     },
@@ -3469,8 +3490,8 @@
         "z": "4c830eaa.25d9d",
         "name": "Erase",
         "group": "a09e9315.ae729",
-        "order": 4,
-        "width": "3",
+        "order": 8,
+        "width": "6",
         "height": "1",
         "passthru": false,
         "label": "Erase",
@@ -3480,8 +3501,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 170,
-        "y": 660,
+        "x": 310,
+        "y": 700,
         "wires": [
             [
                 "bb25b066.d7841",
@@ -3497,8 +3518,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 640,
-        "y": 760,
+        "x": 780,
+        "y": 800,
         "wires": [
             [
                 "95455cb3.56d06"
@@ -3513,8 +3534,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 640,
-        "y": 720,
+        "x": 780,
+        "y": 760,
         "wires": [
             [
                 "95455cb3.56d06"
@@ -3529,24 +3550,1742 @@
         "links": [
             "f9d0c414.8a2098"
         ],
-        "x": 755,
-        "y": 740,
+        "x": 895,
+        "y": 780,
         "wires": []
     },
     {
         "id": "f9d0c414.8a2098",
         "type": "link in",
         "z": "4c830eaa.25d9d",
-        "name": "Erase Button Enable",
+        "name": "",
         "links": [
             "95455cb3.56d06"
         ],
-        "x": 135,
-        "y": 720,
+        "x": 185,
+        "y": 700,
         "wires": [
             [
                 "2690b52b.13900a"
             ]
         ]
+    },
+    {
+        "id": "95245148.e5ec3",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "Init button",
+        "func": "return {'topic':'Timelapse', 'payload':''};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "f20f1ee8.db282"
+            ]
+        ]
+    },
+    {
+        "id": "48aa4cf4.e4d044",
+        "type": "link in",
+        "z": "4c830eaa.25d9d",
+        "name": "Init",
+        "links": [
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
+        ],
+        "x": 75,
+        "y": 120,
+        "wires": [
+            [
+                "95245148.e5ec3"
+            ]
+        ]
+    },
+    {
+        "id": "9b0e3dad.d0bc",
+        "type": "ui_text_input",
+        "z": "4130e736.f7d8f8",
+        "name": "t-value",
+        "label": "Delay Time (sec) 1 or greater",
+        "group": "ed062e51.57946",
+        "order": 1,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "t-value",
+        "x": 710,
+        "y": 140,
+        "wires": [
+            [
+                "c039a804.a62718"
+            ]
+        ]
+    },
+    {
+        "id": "4f1bacbd.732804",
+        "type": "function",
+        "z": "b8390319.95ab",
+        "name": "InitMovieSettings",
+        "func": "msg.topic = 'movieSettings';\nglobal.set(msg.topic,msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 360,
+        "wires": [
+            [
+                "bdcb0fd5.871d7",
+                "25d87e63.2d7e02",
+                "ba318dd0.f6751",
+                "b19282c5.feded"
+            ]
+        ]
+    },
+    {
+        "id": "9523f7b8.3a8bb8",
+        "type": "function",
+        "z": "b8390319.95ab",
+        "name": "Store Setting",
+        "func": "var movieSettings = global.get('movieSettings');\nvar settingTopic = msg.topic.split('-');\nmovieSettings[settingTopic[0]][settingTopic[1]] = msg.payload;\nreturn {'topic':'movieSettings', 'payload':movieSettings};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 930,
+        "y": 340,
+        "wires": [
+            [
+                "df2b989a.995468"
+            ]
+        ]
+    },
+    {
+        "id": "1ef701d0.92ba2e",
+        "type": "ui_text_input",
+        "z": "b8390319.95ab",
+        "name": "w-value",
+        "label": "Width (64 to 1920)",
+        "group": "8e5e25d9.a83308",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "w-value",
+        "x": 680,
+        "y": 280,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "e89f24b4.2ca158",
+        "type": "ui_switch",
+        "z": "b8390319.95ab",
+        "name": "w-enabled",
+        "label": "",
+        "group": "8e5e25d9.a83308",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "w-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 690,
+        "y": 320,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "bdcb0fd5.871d7",
+        "type": "function",
+        "z": "b8390319.95ab",
+        "name": "Get w",
+        "func": "var command = 'w';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "1ef701d0.92ba2e"
+            ],
+            [
+                "e89f24b4.2ca158"
+            ]
+        ]
+    },
+    {
+        "id": "25d87e63.2d7e02",
+        "type": "function",
+        "z": "b8390319.95ab",
+        "name": "Get h",
+        "func": "var command = 'h';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 490,
+        "y": 400,
+        "wires": [
+            [
+                "42010675.781e18"
+            ],
+            [
+                "9ecdf979.179d98"
+            ]
+        ]
+    },
+    {
+        "id": "9ecdf979.179d98",
+        "type": "ui_switch",
+        "z": "b8390319.95ab",
+        "name": "h-enabled",
+        "label": "",
+        "group": "8e5e25d9.a83308",
+        "order": 8,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "h-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 680,
+        "y": 420,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "42010675.781e18",
+        "type": "ui_text_input",
+        "z": "b8390319.95ab",
+        "name": "h-value",
+        "label": "Height (64 to 1080)",
+        "group": "8e5e25d9.a83308",
+        "order": 7,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "h-value",
+        "x": 680,
+        "y": 380,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "ba318dd0.f6751",
+        "type": "function",
+        "z": "b8390319.95ab",
+        "name": "Get fps",
+        "func": "var command = 'fps';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 500,
+        "y": 500,
+        "wires": [
+            [
+                "3e212378.a79e9c"
+            ],
+            [
+                "38d0b779.f9f5b8"
+            ]
+        ]
+    },
+    {
+        "id": "38d0b779.f9f5b8",
+        "type": "ui_switch",
+        "z": "b8390319.95ab",
+        "name": "fps-enabled",
+        "label": "",
+        "group": "8e5e25d9.a83308",
+        "order": 10,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "fps-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 690,
+        "y": 520,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "3e212378.a79e9c",
+        "type": "ui_text_input",
+        "z": "b8390319.95ab",
+        "name": "fps-value",
+        "label": "Frames per Second (2 to 30)",
+        "group": "8e5e25d9.a83308",
+        "order": 9,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "fps-value",
+        "x": 680,
+        "y": 480,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "d16dd76c.35aa58",
+        "type": "link in",
+        "z": "b8390319.95ab",
+        "name": "Receive Init",
+        "links": [
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
+        ],
+        "x": 155,
+        "y": 180,
+        "wires": [
+            [
+                "11ab8a69.4c0c56"
+            ]
+        ]
+    },
+    {
+        "id": "df2b989a.995468",
+        "type": "file",
+        "z": "b8390319.95ab",
+        "name": "StoreMovieSettings",
+        "filename": "movieSettings.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "x": 1110,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "11ab8a69.4c0c56",
+        "type": "file in",
+        "z": "b8390319.95ab",
+        "name": "Read MovieSettings",
+        "filename": "movieSettings.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "c3f58957.54fcd8"
+            ]
+        ]
+    },
+    {
+        "id": "c3f58957.54fcd8",
+        "type": "json",
+        "z": "b8390319.95ab",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "4f1bacbd.732804"
+            ]
+        ]
+    },
+    {
+        "id": "e6fb562e.dcca98",
+        "type": "ui_switch",
+        "z": "b8390319.95ab",
+        "name": "t-enabled",
+        "label": "",
+        "group": "8e5e25d9.a83308",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "t-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "b19282c5.feded",
+        "type": "function",
+        "z": "b8390319.95ab",
+        "name": "Get t",
+        "func": "var command = 't';\nvar dt = Number(msg.payload[command].value);\ndt = dt / 1000;\nvar valueMsg = {'topic':command +'-value', 'payload':dt.toString()};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled, enabled:false};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "cccebedc.48f28"
+            ],
+            [
+                "e6fb562e.dcca98"
+            ]
+        ]
+    },
+    {
+        "id": "eceb5a3c.dbb2d8",
+        "type": "function",
+        "z": "b8390319.95ab",
+        "name": "sec to msec",
+        "func": "var dt = Number(msg.payload);\ndt = dt * 1000;\nmsg.payload = dt.toString();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 180,
+        "wires": [
+            [
+                "9523f7b8.3a8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "cccebedc.48f28",
+        "type": "ui_text_input",
+        "z": "b8390319.95ab",
+        "name": "t-value",
+        "label": "Length (sec) 1 or greater",
+        "group": "8e5e25d9.a83308",
+        "order": 1,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "t-value",
+        "x": 670,
+        "y": 180,
+        "wires": [
+            [
+                "eceb5a3c.dbb2d8"
+            ]
+        ]
+    },
+    {
+        "id": "506c30da.4f4c9",
+        "type": "ui_button",
+        "z": "43d9f0b1.29583",
+        "name": "Movie",
+        "group": "e30ec498.e5ecc8",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "{{msg.topic}}",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "e6f05d67.e395f"
+            ]
+        ]
+    },
+    {
+        "id": "9147d254.c717a",
+        "type": "file in",
+        "z": "43d9f0b1.29583",
+        "name": "Get movie counter",
+        "filename": "movieCounter.json",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "x": 710,
+        "y": 580,
+        "wires": [
+            [
+                "d66fff14.389fc"
+            ]
+        ]
+    },
+    {
+        "id": "d66fff14.389fc",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Store movie counter",
+        "func": "global.set('movieCounter', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 580,
+        "wires": [
+            [
+                "9018b6ec.052388"
+            ]
+        ]
+    },
+    {
+        "id": "f25b68ed.28adb8",
+        "type": "link in",
+        "z": "43d9f0b1.29583",
+        "name": "Init",
+        "links": [
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
+        ],
+        "x": 555,
+        "y": 580,
+        "wires": [
+            [
+                "9147d254.c717a"
+            ]
+        ]
+    },
+    {
+        "id": "9018b6ec.052388",
+        "type": "ui_text",
+        "z": "43d9f0b1.29583",
+        "group": "e30ec498.e5ecc8",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "name": "Movie Counter",
+        "label": "Movie",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1180,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a6fce1f8.a3e2b",
+        "type": "file",
+        "z": "43d9f0b1.29583",
+        "name": "Write movieCounter",
+        "filename": "movieCounter.json",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "x": 1190,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e6f05d67.e395f",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "compile settings",
+        "func": "var movieRunning = flow.get('movieRunning');\nif (movieRunning)\n{\n    return [null, null];   \n}\nelse\n{\n    flow.set('movieRunning',!movieRunning);\n    var cameraSettings = global.get('cameraSettings');\n    var movieSettings = global.get('movieSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in movieSettings)\n    {\n        if (movieSettings[key].enabled && key != 'd')\n        {\n            commandString = commandString + ' -'+ key + ' ' + movieSettings[key].value;\n        }\n    }\n    commandString = commandString + ' -o /media/pi/yggCamData/images/latest.h264';\n    flow.set('commandLineArgs',commandString);\n    return [{'topic':'Running', 'payload':''},{'topic':'', 'payload':''}];    \n}\n\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "d89fec47.942aa"
+            ],
+            [
+                "a8c5926f.e7519"
+            ]
+        ]
+    },
+    {
+        "id": "852288.73ed9d78",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Incr Movie",
+        "func": "var movieCounter = global.get('movieCounter');\nvar counter = Number(movieCounter);\nif (msg.payload.code == 0) counter = counter + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nmovieCounter = prefix + counter.toString();\nglobal.set('movieCounter', movieCounter);\nvar currentCount = {'topic':'movieCounter','payload':movieCounter};\nmsg.payload = '/media/pi/yggCamData/images/movies/movie' + movieCounter + '.mp4';\nreturn [msg, currentCount];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1130,
+        "y": 320,
+        "wires": [
+            [
+                "d262569c.30ed78"
+            ],
+            [
+                "a6fce1f8.a3e2b",
+                "9018b6ec.052388"
+            ]
+        ]
+    },
+    {
+        "id": "d262569c.30ed78",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "cp /media/pi/yggCamData/images/latest.mp4 ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Copy to movies",
+        "x": 1340,
+        "y": 320,
+        "wires": [
+            [],
+            [],
+            [
+                "1153b8a.9c9c247"
+            ]
+        ]
+    },
+    {
+        "id": "5c10248.1baf1dc",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "raspivid ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Run Camera",
+        "x": 1090,
+        "y": 120,
+        "wires": [
+            [],
+            [],
+            [
+                "890efdc4.6b12c"
+            ]
+        ]
+    },
+    {
+        "id": "b464c768.661858",
+        "type": "link in",
+        "z": "43d9f0b1.29583",
+        "name": "Init",
+        "links": [
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
+        ],
+        "x": 260,
+        "y": 520,
+        "wires": [
+            [
+                "e0eca58f.26bd18"
+            ]
+        ]
+    },
+    {
+        "id": "e0eca58f.26bd18",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Init Movie State",
+        "func": "flow.set('movieRunning',false);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f3b4d728.7c9118",
+        "type": "ui_button",
+        "z": "43d9f0b1.29583",
+        "name": "Export",
+        "group": "e30ec498.e5ecc8",
+        "order": 4,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Export",
+        "color": "",
+        "bgcolor": "magenta",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 270,
+        "y": 960,
+        "wires": [
+            [
+                "f0386a48.95cc88",
+                "451d79ba.484228"
+            ]
+        ]
+    },
+    {
+        "id": "58d956c.30baea8",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "zip -r ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Zip Movies",
+        "x": 910,
+        "y": 940,
+        "wires": [
+            [],
+            [],
+            [
+                "dbf9dec2.7de97"
+            ]
+        ]
+    },
+    {
+        "id": "451d79ba.484228",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Disable",
+        "func": "msg.enabled = false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1080,
+        "wires": [
+            [
+                "53637290.61b07c"
+            ]
+        ]
+    },
+    {
+        "id": "dbf9dec2.7de97",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Enable",
+        "func": "msg.enabled = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1080,
+        "y": 1000,
+        "wires": [
+            [
+                "53637290.61b07c"
+            ]
+        ]
+    },
+    {
+        "id": "f0386a48.95cc88",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "ls  /media/pi",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 470,
+        "y": 960,
+        "wires": [
+            [
+                "959ee6f0.f2c5c8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "959ee6f0.f2c5c8",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Find USB Stick",
+        "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nfor (var ii = 0; ii < split.length; ++ii)\n{\n    if (split[ii] != '')\n        if(split[ii] != '/media/pi:')\n            if(split[ii] != 'yggCamData')\n               usbStick = '/media/pi/' + split[ii] + '/movies.zip'; \n}\nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/yggCamData/images/movies'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 660,
+        "y": 940,
+        "wires": [
+            [
+                "58d956c.30baea8"
+            ],
+            [
+                "c632f5a.be7be08"
+            ]
+        ]
+    },
+    {
+        "id": "c632f5a.be7be08",
+        "type": "ui_toast",
+        "z": "43d9f0b1.29583",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "Missing USB Stick",
+        "name": "Missing USB Stick",
+        "x": 870,
+        "y": 1000,
+        "wires": [
+            [
+                "dbf9dec2.7de97"
+            ]
+        ]
+    },
+    {
+        "id": "53637290.61b07c",
+        "type": "link out",
+        "z": "43d9f0b1.29583",
+        "name": "Enable Export Button",
+        "links": [
+            "b45ed556.59dbb8"
+        ],
+        "x": 1195,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "b45ed556.59dbb8",
+        "type": "link in",
+        "z": "43d9f0b1.29583",
+        "name": "Export Button Enable",
+        "links": [
+            "53637290.61b07c"
+        ],
+        "x": 235,
+        "y": 1040,
+        "wires": [
+            [
+                "f3b4d728.7c9118"
+            ]
+        ]
+    },
+    {
+        "id": "8e9f6856.5a1388",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "rm /media/pi/yggCamData/images/movies/*.mp4",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Clear movie directory",
+        "x": 580,
+        "y": 700,
+        "wires": [
+            [],
+            [],
+            [
+                "4e190f54.83091",
+                "829a8c7c.44a54"
+            ]
+        ]
+    },
+    {
+        "id": "4e190f54.83091",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Reset movie counter",
+        "func": "global.set('movieCounter', '0000');\nreturn {'topic':'movieCounter','payload':'0000'};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 840,
+        "y": 700,
+        "wires": [
+            [
+                "a6fce1f8.a3e2b",
+                "9018b6ec.052388"
+            ]
+        ]
+    },
+    {
+        "id": "b1dc9c5f.79328",
+        "type": "ui_button",
+        "z": "43d9f0b1.29583",
+        "name": "Erase",
+        "group": "e30ec498.e5ecc8",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Erase",
+        "color": "",
+        "bgcolor": "red",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 330,
+        "y": 700,
+        "wires": [
+            [
+                "8e9f6856.5a1388",
+                "7217561e.14d968"
+            ]
+        ]
+    },
+    {
+        "id": "7217561e.14d968",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Disable",
+        "func": "msg.enabled = false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 800,
+        "wires": [
+            [
+                "b65faec3.ce7b9"
+            ]
+        ]
+    },
+    {
+        "id": "829a8c7c.44a54",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Enable",
+        "func": "msg.enabled = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 760,
+        "wires": [
+            [
+                "b65faec3.ce7b9"
+            ]
+        ]
+    },
+    {
+        "id": "b65faec3.ce7b9",
+        "type": "link out",
+        "z": "43d9f0b1.29583",
+        "name": "Enable Erase Button",
+        "links": [
+            "c9b9ddd5.86f05"
+        ],
+        "x": 915,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "c9b9ddd5.86f05",
+        "type": "link in",
+        "z": "43d9f0b1.29583",
+        "name": "Erase Button Enable",
+        "links": [
+            "b65faec3.ce7b9"
+        ],
+        "x": 295,
+        "y": 760,
+        "wires": [
+            [
+                "b1dc9c5f.79328"
+            ]
+        ]
+    },
+    {
+        "id": "ef0d76b0.b5c078",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Init button",
+        "func": "return {'topic':'Movie', 'payload':''};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "506c30da.4f4c9"
+            ]
+        ]
+    },
+    {
+        "id": "1da9c207.8c0e3e",
+        "type": "link in",
+        "z": "43d9f0b1.29583",
+        "name": "Init",
+        "links": [
+            "d4bbd794.b49c98",
+            "82971844.2d8bd8"
+        ],
+        "x": 45,
+        "y": 220,
+        "wires": [
+            [
+                "ef0d76b0.b5c078"
+            ]
+        ]
+    },
+    {
+        "id": "890efdc4.6b12c",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "MP4Box -add /media/pi/yggCamData/images/latest.h264 /media/pi/yggCamData/images/latest.mp4",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Convert Movie",
+        "x": 720,
+        "y": 200,
+        "wires": [
+            [],
+            [],
+            [
+                "1575a68e.2644b9"
+            ]
+        ]
+    },
+    {
+        "id": "1575a68e.2644b9",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "rm /media/pi/yggCamData/images/latest.h264 ",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Remove Raw Movie",
+        "x": 860,
+        "y": 280,
+        "wires": [
+            [],
+            [],
+            [
+                "852288.73ed9d78"
+            ]
+        ]
+    },
+    {
+        "id": "d89fec47.942aa",
+        "type": "link out",
+        "z": "43d9f0b1.29583",
+        "name": "Change Movie Button",
+        "links": [
+            "b7a7c30e.60cb1"
+        ],
+        "x": 555,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b7a7c30e.60cb1",
+        "type": "link in",
+        "z": "43d9f0b1.29583",
+        "name": "",
+        "links": [
+            "20f1c747.8c87d8",
+            "d89fec47.942aa"
+        ],
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "506c30da.4f4c9"
+            ]
+        ]
+    },
+    {
+        "id": "1153b8a.9c9c247",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Change Movie button",
+        "func": "flow.set('movieRunning',false);\nmsg.topic = 'Movie';\nmsg.payload = '';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1380,
+        "y": 420,
+        "wires": [
+            [
+                "20f1c747.8c87d8",
+                "c7c03f4d.68362"
+            ]
+        ]
+    },
+    {
+        "id": "20f1c747.8c87d8",
+        "type": "link out",
+        "z": "43d9f0b1.29583",
+        "name": "Movie finished",
+        "links": [
+            "b7a7c30e.60cb1"
+        ],
+        "x": 1515,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c7c03f4d.68362",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Add Timestamp",
+        "func": "var timestamp = new Date();\nvar movieName = '/latest.mp4?time=' + timestamp.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'movie':movieName,'date':timestamp.toLocaleString()}};\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1440,
+        "y": 500,
+        "wires": [
+            [
+                "2b292d8c.82fa92"
+            ]
+        ]
+    },
+    {
+        "id": "2b292d8c.82fa92",
+        "type": "ui_template",
+        "z": "43d9f0b1.29583",
+        "group": "e30ec498.e5ecc8",
+        "name": "Play Movie",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "format": "<div ng-style=\"{color:'black', background:'lime', height:'100%', width:'100%'}\" align='center'>\n    <table>\n            <tr align=\"center\">\n                <td align=\"center\">\n                     <a href='{{msg.payload.movie}}' >Play Movie</a>\n                </td>\n            </tr>\n    </table>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1490,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8c5926f.e7519",
+        "type": "exec",
+        "z": "43d9f0b1.29583",
+        "command": "rm /media/pi/yggCamData/images/*.mp4 /media/pi/yggCamData/images/*.h264 ",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Remove Raw Movie",
+        "x": 700,
+        "y": 100,
+        "wires": [
+            [],
+            [],
+            [
+                "53efbbd2.4a81a4"
+            ]
+        ]
+    },
+    {
+        "id": "53efbbd2.4a81a4",
+        "type": "function",
+        "z": "43d9f0b1.29583",
+        "name": "Get Settings",
+        "func": "msg.payload = flow.get('commandLineArgs');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 120,
+        "wires": [
+            [
+                "5c10248.1baf1dc"
+            ]
+        ]
+    },
+    {
+        "id": "e65616bc.46b538",
+        "type": "ui_text_input",
+        "z": "465cfd27.107674",
+        "name": "displayValue",
+        "label": "",
+        "group": "5119bf0d.949f3",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "mode": "text",
+        "delay": 300,
+        "topic": "displayValue",
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "f34d1d61.4881e"
+            ]
+        ]
+    },
+    {
+        "id": "d45f140c.1f3418",
+        "type": "ui_button",
+        "z": "465cfd27.107674",
+        "name": "Plus Button",
+        "group": "5119bf0d.949f3",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "+",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "addOne",
+        "x": 430,
+        "y": 560,
+        "wires": [
+            [
+                "f34d1d61.4881e"
+            ]
+        ]
+    },
+    {
+        "id": "aa0e76e4.4e2088",
+        "type": "ui_button",
+        "z": "465cfd27.107674",
+        "name": "Minus Button",
+        "group": "5119bf0d.949f3",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "-",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "-1",
+        "payloadType": "num",
+        "topic": "subtractOne",
+        "x": 430,
+        "y": 520,
+        "wires": [
+            [
+                "f34d1d61.4881e"
+            ]
+        ]
+    },
+    {
+        "id": "f3aedd2e.a900e",
+        "type": "ui_text",
+        "z": "465cfd27.107674",
+        "group": "5119bf0d.949f3",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "name": "Display Label",
+        "label": "Display",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 440,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "f34d1d61.4881e",
+        "type": "function",
+        "z": "465cfd27.107674",
+        "name": "Get Display Value",
+        "func": "var stillImageCounter = Number(global.get('stillImageCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  stillImageCounter) counter = stillImageCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/yggCamData/images';\nvar displayFileName  = '/stills/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "e843923e.7d7ac"
+            ],
+            [
+                "a779e05c.35d04"
+            ]
+        ]
+    },
+    {
+        "id": "a779e05c.35d04",
+        "type": "delay",
+        "z": "465cfd27.107674",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "300",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 790,
+        "y": 560,
+        "wires": [
+            [
+                "e65616bc.46b538"
+            ]
+        ]
+    },
+    {
+        "id": "e843923e.7d7ac",
+        "type": "exec",
+        "z": "465cfd27.107674",
+        "command": "date -r ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Get Date",
+        "x": 860,
+        "y": 380,
+        "wires": [
+            [
+                "365cfe5.f9b9602"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "365cfe5.f9b9602",
+        "type": "function",
+        "z": "465cfd27.107674",
+        "name": "Add Timestamp",
+        "func": "var timestampNow = new Date();\nvar fileName = flow.get('displayFileName');\nvar fileTimeStamp = msg.payload.split('\\n')[0];\nvar imageName = fileName+ '?time=' + timestampNow.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':fileTimeStamp}};\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1040,
+        "y": 360,
+        "wires": [
+            [
+                "79057734.fe6ba8"
+            ]
+        ]
+    },
+    {
+        "id": "dd215dc9.e71ff",
+        "type": "link out",
+        "z": "465cfd27.107674",
+        "name": "StillImageFinished",
+        "links": [
+            "f319a718.c09eb8"
+        ],
+        "x": 1335,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f319a718.c09eb8",
+        "type": "link in",
+        "z": "465cfd27.107674",
+        "name": "",
+        "links": [
+            "8ab40235.9f40c",
+            "dd215dc9.e71ff",
+            "e8d4d65e.9e0298"
+        ],
+        "x": 135,
+        "y": 520,
+        "wires": [
+            [
+                "e65616bc.46b538",
+                "f34d1d61.4881e"
+            ]
+        ]
+    },
+    {
+        "id": "8ab40235.9f40c",
+        "type": "link out",
+        "z": "465cfd27.107674",
+        "name": "InitCounter",
+        "links": [
+            "59f6d3aa.758e7c",
+            "d90aa84b.972ee8",
+            "f319a718.c09eb8"
+        ],
+        "x": 735,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "d90aa84b.972ee8",
+        "type": "link in",
+        "z": "465cfd27.107674",
+        "name": "",
+        "links": [
+            "8ab40235.9f40c",
+            "e8d4d65e.9e0298"
+        ],
+        "x": 855,
+        "y": 240,
+        "wires": [
+            [
+                "2fadadf4.343c22"
+            ]
+        ]
+    },
+    {
+        "id": "e8d4d65e.9e0298",
+        "type": "link out",
+        "z": "465cfd27.107674",
+        "name": "Reset Counter",
+        "links": [
+            "9dfcc25a.687d4",
+            "d90aa84b.972ee8",
+            "f319a718.c09eb8"
+        ],
+        "x": 1075,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "9dfcc25a.687d4",
+        "type": "link in",
+        "z": "465cfd27.107674",
+        "name": "",
+        "links": [
+            "e8d4d65e.9e0298"
+        ],
+        "x": 955,
+        "y": 180,
+        "wires": [
+            [
+                "c0e3dd95.24f7b"
+            ]
+        ]
+    },
+    {
+        "id": "97a42bf0.773748",
+        "type": "ui_template",
+        "z": "4c830eaa.25d9d",
+        "group": "55578abb.5b8b84",
+        "name": "Image Display",
+        "order": 2,
+        "width": "12",
+        "height": "10",
+        "format": "<script type=\"text/javascript\">\n//var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);\nif (!!navigator.platform && /iPhone/.test(navigator.platform))\n{\n    $(\"#image\").attr(\"height\", \"260\");\n    $(\"#image\").attr(\"width\",  \"347\");\n    \n}\n</script>\n<div>\n    <table>\n        <tbody>\n            <tr align=\"center\">\n                <td align=\"center\">\n                    <img id=\"image\" src='{{msg.payload.image}}' width=\"100%\" >\n                </td>\n            </tr>\n            <tr align=\"center\">\n                <td id=\"imageDate\" align=\"center\">\n                   {{msg.payload.date}}\n                </td>\n            </tr>        \n        </tbody>\n    </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1180,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7dd82750.472798",
+        "type": "ui_text_input",
+        "z": "4c830eaa.25d9d",
+        "name": "displayValue",
+        "label": "",
+        "group": "a09e9315.ae729",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "mode": "text",
+        "delay": 300,
+        "topic": "displayValue",
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "2682ed4e.ef70c2"
+            ]
+        ]
+    },
+    {
+        "id": "9a5e1499.ba9c58",
+        "type": "ui_button",
+        "z": "4c830eaa.25d9d",
+        "name": "Plus Button",
+        "group": "a09e9315.ae729",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "+",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "addOne",
+        "x": 330,
+        "y": 540,
+        "wires": [
+            [
+                "2682ed4e.ef70c2"
+            ]
+        ]
+    },
+    {
+        "id": "913f5d2f.80572",
+        "type": "ui_button",
+        "z": "4c830eaa.25d9d",
+        "name": "Minus Button",
+        "group": "a09e9315.ae729",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "-",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "-1",
+        "payloadType": "num",
+        "topic": "subtractOne",
+        "x": 330,
+        "y": 500,
+        "wires": [
+            [
+                "2682ed4e.ef70c2"
+            ]
+        ]
+    },
+    {
+        "id": "20d7a069.d0f1f",
+        "type": "ui_text",
+        "z": "4c830eaa.25d9d",
+        "group": "a09e9315.ae729",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "name": "Display Label",
+        "label": "Display",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 340,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "2682ed4e.ef70c2",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "Get Display Value",
+        "func": "var timelapseCounter = Number(global.get('timelapseCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  timelapseCounter) counter = timelapseCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/yggCamData/images';\nvar displayFileName  = '/timelapse/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "6a74dd71.9801e4"
+            ],
+            [
+                "d5d922ab.bdbbe"
+            ]
+        ]
+    },
+    {
+        "id": "d5d922ab.bdbbe",
+        "type": "delay",
+        "z": "4c830eaa.25d9d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "300",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 690,
+        "y": 540,
+        "wires": [
+            [
+                "7dd82750.472798"
+            ]
+        ]
+    },
+    {
+        "id": "6a74dd71.9801e4",
+        "type": "exec",
+        "z": "4c830eaa.25d9d",
+        "command": "date -r ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Get Date",
+        "x": 760,
+        "y": 360,
+        "wires": [
+            [
+                "fef3a358.1bd03"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "fef3a358.1bd03",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "Add Timestamp",
+        "func": "var timestampNow = new Date();\nvar fileName = flow.get('displayFileName');\nvar fileTimeStamp = msg.payload.split('\\n')[0];\nvar imageName = fileName+ '?time=' + timestampNow.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':fileTimeStamp}};\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 940,
+        "y": 340,
+        "wires": [
+            [
+                "97a42bf0.773748"
+            ]
+        ]
+    },
+    {
+        "id": "bf422c55.51687",
+        "type": "link out",
+        "z": "4c830eaa.25d9d",
+        "name": "Store Timelapse Counter",
+        "links": [
+            "c57923a7.78325",
+            "5efdc7b.0900b38"
+        ],
+        "x": 775,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c57923a7.78325",
+        "type": "link in",
+        "z": "4c830eaa.25d9d",
+        "name": "",
+        "links": [
+            "aa62bfeb.4e782",
+            "bf422c55.51687"
+        ],
+        "x": 1135,
+        "y": 240,
+        "wires": [
+            [
+                "b651eb36.a7b468"
+            ]
+        ]
+    },
+    {
+        "id": "aa62bfeb.4e782",
+        "type": "link out",
+        "z": "4c830eaa.25d9d",
+        "name": "Reset Timelapse Counter",
+        "links": [
+            "a16d3627.cee478",
+            "c57923a7.78325",
+            "5efdc7b.0900b38"
+        ],
+        "x": 1035,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "a16d3627.cee478",
+        "type": "link in",
+        "z": "4c830eaa.25d9d",
+        "name": "",
+        "links": [
+            "aa62bfeb.4e782"
+        ],
+        "x": 1435,
+        "y": 80,
+        "wires": [
+            [
+                "48798c01.ab5e94"
+            ]
+        ]
+    },
+    {
+        "id": "5efdc7b.0900b38",
+        "type": "link in",
+        "z": "4c830eaa.25d9d",
+        "name": "",
+        "links": [
+            "5a7c3d96.8b2594",
+            "aa62bfeb.4e782",
+            "bf422c55.51687"
+        ],
+        "x": 140,
+        "y": 440,
+        "wires": [
+            [
+                "2682ed4e.ef70c2",
+                "7dd82750.472798"
+            ]
+        ]
+    },
+    {
+        "id": "6666a910.300bd8",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "getTimeLapseCounter",
+        "func": "msg.payload = global.get('timelapseCounter');\nmsg.topic = 'displayValue';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1660,
+        "y": 180,
+        "wires": [
+            [
+                "5a7c3d96.8b2594"
+            ]
+        ]
+    },
+    {
+        "id": "5a7c3d96.8b2594",
+        "type": "link out",
+        "z": "4c830eaa.25d9d",
+        "name": "get timelapse Counter",
+        "links": [
+            "5efdc7b.0900b38"
+        ],
+        "x": 1720,
+        "y": 240,
+        "wires": []
     }
 ]
