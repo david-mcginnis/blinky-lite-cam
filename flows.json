@@ -150,7 +150,7 @@
             }
         },
         "site": {
-            "name": "YggCam",
+            "name": "QooCam",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "dateFormat": "DD/MM/YYYY",
@@ -181,7 +181,7 @@
         "id": "d331f05e.b54d3",
         "type": "ui_tab",
         "z": "",
-        "name": "SingleShot",
+        "name": "QooCam SingleShot",
         "icon": "dashboard",
         "order": 1
     },
@@ -200,7 +200,7 @@
         "id": "a73cf538.7403b8",
         "type": "ui_tab",
         "z": "",
-        "name": "Settings",
+        "name": "QooCam Settings",
         "icon": "dashboard",
         "order": 4
     },
@@ -274,7 +274,7 @@
         "id": "3bda1a23.191ae6",
         "type": "ui_tab",
         "z": "",
-        "name": "Timelapse",
+        "name": "QooCam Timelapse",
         "icon": "dashboard",
         "order": 2
     },
@@ -282,7 +282,7 @@
         "id": "4ae97ecc.60f15",
         "type": "ui_tab",
         "z": "",
-        "name": "Movie",
+        "name": "QooCam Movie",
         "icon": "dashboard",
         "order": 3
     },

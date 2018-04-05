@@ -108,7 +108,7 @@ module.exports = {
 
     // If you installed the optional node-red-dashboard you can set it's path
     // relative to httpRoot
-    ui: { path: "yggcam" },
+    ui: { path: "qooCam" },
 
     // Securing Node-RED
     // -----------------
