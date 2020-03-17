@@ -147,10 +147,16 @@
                 "base-font": {
                     "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
                 }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
             }
         },
         "site": {
-            "name": "QooCam",
+            "name": "Blinky-Lite-Cam",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "dateFormat": "DD/MM/YYYY",
@@ -181,9 +187,11 @@
         "id": "d331f05e.b54d3",
         "type": "ui_tab",
         "z": "",
-        "name": "QooCam SingleShot",
+        "name": "SingleShot",
         "icon": "dashboard",
-        "order": 1
+        "order": 1,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "7e7d9139.ec86",
@@ -200,9 +208,11 @@
         "id": "a73cf538.7403b8",
         "type": "ui_tab",
         "z": "",
-        "name": "QooCam Settings",
+        "name": "Settings",
         "icon": "dashboard",
-        "order": 4
+        "order": 4,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "2109abd1.7997a4",
@@ -274,9 +284,11 @@
         "id": "3bda1a23.191ae6",
         "type": "ui_tab",
         "z": "",
-        "name": "QooCam Timelapse",
+        "name": "Timelapse",
         "icon": "dashboard",
-        "order": 2
+        "order": 2,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "4ae97ecc.60f15",
@@ -373,7 +385,7 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "compile settings",
-        "func": "var cameraSettings = global.get('cameraSettings');\nvar singleImageSettings = global.get('singleImageSettings');\nvar commandString = '';\nfor (var key in cameraSettings)\n{\n    if (cameraSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n}\nfor (var key in singleImageSettings)\n{\n    if (singleImageSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + singleImageSettings[key].value;\n}\nmsg.payload = commandString + ' -o /media/pi/yggCamData/images/latest.jpg';\nreturn msg;",
+        "func": "var cameraSettings = global.get('cameraSettings');\nvar singleImageSettings = global.get('singleImageSettings');\nvar commandString = '';\nfor (var key in cameraSettings)\n{\n    if (cameraSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n}\nfor (var key in singleImageSettings)\n{\n    if (singleImageSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + singleImageSettings[key].value;\n}\nmsg.payload = commandString + ' -o /media/pi/blinky-lite-cam/images/latest.jpg';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 260,
@@ -1831,7 +1843,7 @@
         "id": "40e6ab49.1cfd74",
         "type": "exec",
         "z": "465cfd27.107674",
-        "command": "cp /media/pi/yggCamData/images/latest.jpg ",
+        "command": "cp /media/pi/blinky-lite-cam/images/latest.jpg ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
@@ -1943,7 +1955,7 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Incr Still",
-        "func": "var stillImageCounter = global.get('stillImageCounter');\nvar counter = Number(stillImageCounter) + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nstillImageCounter = prefix + counter.toString();\nglobal.set('stillImageCounter', stillImageCounter);\nvar currentCount = {'topic':'stillImageCounter','payload':stillImageCounter};\nmsg.payload = '/media/pi/yggCamData/images/stills/image' + stillImageCounter + '.jpg';\nreturn [msg, currentCount];",
+        "func": "var stillImageCounter = global.get('stillImageCounter');\nvar counter = Number(stillImageCounter) + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nstillImageCounter = prefix + counter.toString();\nglobal.set('stillImageCounter', stillImageCounter);\nvar currentCount = {'topic':'stillImageCounter','payload':stillImageCounter};\nmsg.payload = '/media/pi/blinky-lite-cam/images/stills/image' + stillImageCounter + '.jpg';\nreturn [msg, currentCount];",
         "outputs": 2,
         "noerr": 0,
         "x": 760,
@@ -1985,7 +1997,9 @@
         "overwriteFile": "true",
         "x": 1140,
         "y": 520,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "90e90c68.98c93",
@@ -2031,7 +2045,9 @@
         "overwriteFile": "true",
         "x": 1150,
         "y": 220,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "e0c16ec9.5031b",
@@ -2077,7 +2093,9 @@
         "overwriteFile": "true",
         "x": 990,
         "y": 120,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "444a8905.9a2d88",
@@ -2116,7 +2134,7 @@
         "id": "5673cd26.1098b4",
         "type": "exec",
         "z": "465cfd27.107674",
-        "command": "rm /media/pi/yggCamData/images/stills/*.jpg",
+        "command": "rm /media/pi/blinky-lite-cam/images/stills/*.jpg",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -2219,6 +2237,7 @@
         "height": "1",
         "passthru": false,
         "label": "Export",
+        "tooltip": "",
         "color": "",
         "bgcolor": "magenta",
         "icon": "",
@@ -2245,6 +2264,7 @@
         "height": "1",
         "passthru": false,
         "label": "Erase",
+        "tooltip": "",
         "color": "",
         "bgcolor": "red",
         "icon": "",
@@ -2349,14 +2369,14 @@
         "id": "7008e74d.541f58",
         "type": "exec",
         "z": "465cfd27.107674",
-        "command": "ls  /media/pi",
+        "command": "ls  /media/pi/usb",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 550,
+        "x": 560,
         "y": 920,
         "wires": [
             [
@@ -2371,7 +2391,7 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Find USB Stick",
-        "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nfor (var ii = 0; ii < split.length; ++ii)\n{\n    if (split[ii] != '')\n        if(split[ii] != '/media/pi:')\n            if(split[ii] != 'yggCamData')\n               usbStick = '/media/pi/' + split[ii] + '/stills.zip'; \n}\nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/yggCamData/images/stills'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
+        "func": "var split = msg.payload.split('\\n');\n//node.warn(split);\nvar usbStick = '';\nif (split[1] == 'blinky-lite-cam')\n    usbStick = '/media/pi/usb/' + split[1] + '/stills.zip'; \nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/blinky-lite-cam/images/stills'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
         "outputs": 2,
         "noerr": 0,
         "x": 740,
@@ -2818,7 +2838,9 @@
         "overwriteFile": "true",
         "x": 1170,
         "y": 400,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "df46fa69.6ba2c8",
@@ -2974,14 +2996,16 @@
         "overwriteFile": "true",
         "x": 1590,
         "y": 120,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "c1b4368c.83a088",
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "compile settings",
-        "func": "var loopRunning = flow.get('loopRunning');\nif (loopRunning)\n{\n    flow.set('loopRunning',!loopRunning);\n    return [msg,null];   \n}\nelse\n{\n    flow.set('loopRunning',!loopRunning);\n    var cameraSettings = global.get('cameraSettings');\n    var timelapseSettings = global.get('timelapseSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in timelapseSettings)\n    {\n        if (timelapseSettings[key].enabled && key != 'd')\n        {\n            commandString = commandString + ' -'+ key + ' ' + timelapseSettings[key].value;\n        }\n    }\n    commandString = commandString + ' -o /media/pi/yggCamData/images/latest.jpg';\n    flow.set('commandLineArgs',commandString);\n    var maxImages = Math.round((timelapseSettings['d'].value) / (Number(timelapseSettings['t'].value) / 1000));\n    flow.set('maxImages', maxImages);\n    return [null,msg];    \n}\n\n",
+        "func": "var loopRunning = flow.get('loopRunning');\nif (loopRunning)\n{\n    flow.set('loopRunning',!loopRunning);\n    return [msg,null];   \n}\nelse\n{\n    flow.set('loopRunning',!loopRunning);\n    var cameraSettings = global.get('cameraSettings');\n    var timelapseSettings = global.get('timelapseSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in timelapseSettings)\n    {\n        if (timelapseSettings[key].enabled && key != 'd')\n        {\n            commandString = commandString + ' -'+ key + ' ' + timelapseSettings[key].value;\n        }\n    }\n    commandString = commandString + ' -o /media/pi/blinky-lite-cam/images/latest.jpg';\n    flow.set('commandLineArgs',commandString);\n    var maxImages = Math.round((timelapseSettings['d'].value) / (Number(timelapseSettings['t'].value) / 1000));\n    flow.set('maxImages', maxImages);\n    return [null,msg];    \n}\n\n",
         "outputs": 2,
         "noerr": 0,
         "x": 420,
@@ -3000,7 +3024,7 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Incr Timelapse",
-        "func": "var timelapseCounter = global.get('timelapseCounter');\nvar counter = Number(timelapseCounter);\nif (msg.payload.code == 0) counter = counter + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\ntimelapseCounter = prefix + counter.toString();\nglobal.set('timelapseCounter', timelapseCounter);\nvar currentCount = {'topic':'timelapseCounter','payload':timelapseCounter};\nmsg.payload = '/media/pi/yggCamData/images/timelapse/image' + timelapseCounter + '.jpg';\nreturn [msg, currentCount];",
+        "func": "var timelapseCounter = global.get('timelapseCounter');\nvar counter = Number(timelapseCounter);\nif (msg.payload.code == 0) counter = counter + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\ntimelapseCounter = prefix + counter.toString();\nglobal.set('timelapseCounter', timelapseCounter);\nvar currentCount = {'topic':'timelapseCounter','payload':timelapseCounter};\nmsg.payload = '/media/pi/blinky-lite-cam/images/timelapse/image' + timelapseCounter + '.jpg';\nreturn [msg, currentCount];",
         "outputs": 2,
         "noerr": 0,
         "x": 1080,
@@ -3019,7 +3043,7 @@
         "id": "fa45f563.125c08",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "cp /media/pi/yggCamData/images/latest.jpg ",
+        "command": "cp /media/pi/blinky-lite-cam/images/latest.jpg ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
@@ -3106,7 +3130,7 @@
         "id": "cecdcb2d.cf21d8",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "rm /media/pi/yggCamData/images/timelapse/*.jpg",
+        "command": "rm /media/pi/blinky-lite-cam/images/timelapse/*.jpg",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -3362,14 +3386,14 @@
         "id": "4a832090.e517a",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "ls  /media/pi",
+        "command": "ls  /media/pi/usb",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 450,
+        "x": 460,
         "y": 960,
         "wires": [
             [
@@ -3384,7 +3408,7 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Find USB Stick",
-        "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nfor (var ii = 0; ii < split.length; ++ii)\n{\n    if (split[ii] != '')\n        if(split[ii] != '/media/pi:')\n            if(split[ii] != 'yggCamData')\n               usbStick = '/media/pi/' + split[ii] + '/timelapse.zip'; \n}\nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/yggCamData/images/timelapse'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
+        "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nif (split[1] == 'blinky-lite-cam')\n    usbStick = '/media/pi/usb/' + split[1] + '/timelapse.zip'; \nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/blinky-lite-cam/images/timelapse'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];\n\n",
         "outputs": 2,
         "noerr": 0,
         "x": 640,
@@ -3405,9 +3429,11 @@
         "position": "dialog",
         "displayTime": "3",
         "highlight": "",
+        "sendall": true,
         "outputs": 1,
         "ok": "OK",
         "cancel": "",
+        "raw": false,
         "topic": "Missing USB Stick",
         "name": "Missing USB Stick",
         "x": 850,
@@ -3450,7 +3476,7 @@
         "id": "bb25b066.d7841",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "rm /media/pi/yggCamData/images/timelapse/*.jpg",
+        "command": "rm /media/pi/blinky-lite-cam/images/timelapse/*.jpg",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -3495,6 +3521,7 @@
         "height": "1",
         "passthru": false,
         "label": "Erase",
+        "tooltip": "",
         "color": "",
         "bgcolor": "red",
         "icon": "",
@@ -3901,7 +3928,9 @@
         "overwriteFile": "true",
         "x": 1110,
         "y": 340,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "11ab8a69.4c0c56",
@@ -4125,7 +4154,9 @@
         "overwriteFile": "true",
         "x": 1190,
         "y": 540,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "e6f05d67.e395f",
@@ -4829,7 +4860,7 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Get Display Value",
-        "func": "var stillImageCounter = Number(global.get('stillImageCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  stillImageCounter) counter = stillImageCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/yggCamData/images';\nvar displayFileName  = '/stills/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "func": "var stillImageCounter = Number(global.get('stillImageCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  stillImageCounter) counter = stillImageCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/blinky-lite-cam/images';\nvar displayFileName  = '/stills/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
         "outputs": 2,
         "noerr": 0,
         "x": 650,
@@ -5107,7 +5138,7 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Get Display Value",
-        "func": "var timelapseCounter = Number(global.get('timelapseCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  timelapseCounter) counter = timelapseCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/yggCamData/images';\nvar displayFileName  = '/timelapse/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "func": "var timelapseCounter = Number(global.get('timelapseCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  timelapseCounter) counter = timelapseCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/blinky-lite-cam/images';\nvar displayFileName  = '/timelapse/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
         "outputs": 2,
         "noerr": 0,
         "x": 550,
