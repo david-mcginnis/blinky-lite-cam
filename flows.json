@@ -81,7 +81,7 @@
         "id": "6ad7c930.1a06b8",
         "type": "ui_base",
         "theme": {
-            "name": "theme-dark",
+            "name": "theme-custom",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -97,48 +97,49 @@
                 "reset": false
             },
             "customTheme": {
-                "name": "Untitled Theme 1",
+                "name": "Blinky-Lite Theme",
                 "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                "baseColor": "#547792",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#097479",
-                    "value": "#097479",
-                    "edited": false
+                    "default": "#4B7930",
+                    "value": "#547792",
+                    "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
+                    "value": "#547792",
+                    "edited": true
                 },
                 "page-backgroundColor": {
-                    "value": "#111111",
-                    "edited": false
+                    "value": "#ffffff",
+                    "edited": true
                 },
                 "page-sidebar-backgroundColor": {
                     "value": "#000000",
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#0eb8c0",
-                    "edited": false
+                    "value": "#fdc300",
+                    "edited": true
                 },
                 "group-borderColor": {
-                    "value": "#555555",
-                    "edited": false
+                    "value": "#547792",
+                    "edited": true
                 },
                 "group-backgroundColor": {
                     "value": "#333333",
                     "edited": false
                 },
                 "widget-textColor": {
-                    "value": "#eeeeee",
-                    "edited": false
+                    "value": "#ffffff",
+                    "edited": true
                 },
                 "widget-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
+                    "value": "#fdc300",
+                    "edited": true
                 },
                 "widget-borderColor": {
                     "value": "#333333",
@@ -169,7 +170,8 @@
                 "cy": 6,
                 "px": 0,
                 "py": 0
-            }
+            },
+            "allowTempTheme": "true"
         }
     },
     {
@@ -320,7 +322,7 @@
         "timer": "",
         "oldrc": false,
         "name": "Run Camera",
-        "x": 430,
+        "x": 470,
         "y": 40,
         "wires": [
             [],
@@ -344,7 +346,7 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1280,
+        "x": 980,
         "y": 360,
         "wires": [
             []
@@ -372,7 +374,7 @@
         "func": "msg.payload = global.get('stillImageCounter');\nmsg.topic = 'displayValue';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1200,
+        "x": 1140,
         "y": 60,
         "wires": [
             [
@@ -385,10 +387,10 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "compile settings",
-        "func": "var cameraSettings = global.get('cameraSettings');\nvar singleImageSettings = global.get('singleImageSettings');\nvar commandString = '';\nfor (var key in cameraSettings)\n{\n    if (cameraSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n}\nfor (var key in singleImageSettings)\n{\n    if (singleImageSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + singleImageSettings[key].value;\n}\nmsg.payload = commandString + ' -o /media/pi/blinky-lite-cam/images/latest.jpg';\nreturn msg;",
+        "func": "var cameraSettings = global.get('cameraSettings');\nvar singleImageSettings = global.get('singleImageSettings');\nvar commandString = '';\nfor (var key in cameraSettings)\n{\n    if (cameraSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n}\nfor (var key in singleImageSettings)\n{\n    if (singleImageSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + singleImageSettings[key].value;\n}\nmsg.payload = commandString + ' -o ' + global.get('imageStorageLocation') + '/latest.jpg';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 260,
+        "x": 300,
         "y": 40,
         "wires": [
             [
@@ -456,8 +458,8 @@
         "func": "msg.topic = 'cameraSettings';\nglobal.set(msg.topic,msg.payload)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 270,
-        "y": 520,
+        "x": 190,
+        "y": 480,
         "wires": [
             [
                 "b95ce3d5.348db",
@@ -1564,8 +1566,8 @@
         "func": "msg.topic = 'singleImageSettings';\nglobal.set(msg.topic,msg.payload)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 310,
-        "y": 240,
+        "x": 230,
+        "y": 220,
         "wires": [
             [
                 "e1bb4edd.14b15",
@@ -1843,15 +1845,15 @@
         "id": "40e6ab49.1cfd74",
         "type": "exec",
         "z": "465cfd27.107674",
-        "command": "cp /media/pi/blinky-lite-cam/images/latest.jpg ",
+        "command": "cp ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Copy to stills",
-        "x": 1010,
-        "y": 60,
+        "x": 970,
+        "y": 40,
         "wires": [
             [],
             [],
@@ -1864,7 +1866,9 @@
         "id": "12a637f5.4a1628",
         "type": "subflow:b0e801e.0db82",
         "z": "465cfd27.107674",
-        "x": 600,
+        "name": "",
+        "env": [],
+        "x": 670,
         "y": 60,
         "wires": [
             [
@@ -1912,7 +1916,7 @@
             "b464c768.661858",
             "1da9c207.8c0e3e"
         ],
-        "x": 275,
+        "x": 195,
         "y": 220,
         "wires": []
     },
@@ -1925,8 +1929,8 @@
             "d4bbd794.b49c98",
             "82971844.2d8bd8"
         ],
-        "x": 195,
-        "y": 320,
+        "x": 55,
+        "y": 400,
         "wires": [
             [
                 "90e90c68.98c93"
@@ -1942,8 +1946,8 @@
             "d4bbd794.b49c98",
             "82971844.2d8bd8"
         ],
-        "x": 195,
-        "y": 60,
+        "x": 75,
+        "y": 140,
         "wires": [
             [
                 "e0c16ec9.5031b"
@@ -1955,10 +1959,10 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Incr Still",
-        "func": "var stillImageCounter = global.get('stillImageCounter');\nvar counter = Number(stillImageCounter) + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nstillImageCounter = prefix + counter.toString();\nglobal.set('stillImageCounter', stillImageCounter);\nvar currentCount = {'topic':'stillImageCounter','payload':stillImageCounter};\nmsg.payload = '/media/pi/blinky-lite-cam/images/stills/image' + stillImageCounter + '.jpg';\nreturn [msg, currentCount];",
+        "func": "var stillImageCounter = global.get('stillImageCounter');\nvar counter = Number(stillImageCounter) + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nstillImageCounter = prefix + counter.toString();\nglobal.set('stillImageCounter', stillImageCounter);\nvar currentCount = {'topic':'stillImageCounter','payload':stillImageCounter};\nmsg.payload = global.get('imageStorageLocation') + '/latest.jpg'  +  ' '  + global.get('imageStorageLocation') + '/stills/image' + stillImageCounter + '.jpg';\nreturn [msg, currentCount];",
         "outputs": 2,
         "noerr": 0,
-        "x": 760,
+        "x": 820,
         "y": 60,
         "wires": [
             [
@@ -1983,7 +1987,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 990,
-        "y": 220,
+        "y": 140,
         "wires": []
     },
     {
@@ -2010,7 +2014,7 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 180,
+        "x": 200,
         "y": 400,
         "wires": [
             [
@@ -2026,8 +2030,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 90,
-        "y": 520,
+        "x": 150,
+        "y": 440,
         "wires": [
             [
                 "6723d98c.bf4fe8"
@@ -2074,8 +2078,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 130,
-        "y": 240,
+        "x": 170,
+        "y": 180,
         "wires": [
             [
                 "ae5d01c5.75644"
@@ -2091,8 +2095,8 @@
         "appendNewline": false,
         "createDir": false,
         "overwriteFile": "true",
-        "x": 990,
-        "y": 120,
+        "x": 1010,
+        "y": 100,
         "wires": [
             []
         ]
@@ -2106,7 +2110,7 @@
         "format": "lines",
         "chunk": false,
         "sendError": false,
-        "x": 380,
+        "x": 300,
         "y": 260,
         "wires": [
             [
@@ -2122,7 +2126,7 @@
         "func": "global.set('stillImageCounter', msg.payload);\nmsg.topic = 'displayValue';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 590,
+        "x": 490,
         "y": 260,
         "wires": [
             [
@@ -2134,15 +2138,15 @@
         "id": "5673cd26.1098b4",
         "type": "exec",
         "z": "465cfd27.107674",
-        "command": "rm /media/pi/blinky-lite-cam/images/stills/*.jpg",
-        "addpay": false,
+        "command": "rm ",
+        "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Clear stills directory",
-        "x": 590,
-        "y": 720,
+        "x": 490,
+        "y": 640,
         "wires": [
             [],
             [],
@@ -2160,8 +2164,8 @@
         "func": "global.set('stillImageCounter', '0000');\nreturn {'topic':'displayValue','payload':'0000'};",
         "outputs": 1,
         "noerr": 0,
-        "x": 850,
-        "y": 720,
+        "x": 710,
+        "y": 640,
         "wires": [
             [
                 "e8d4d65e.9e0298"
@@ -2179,13 +2183,14 @@
         "height": "1",
         "passthru": false,
         "label": "Still",
+        "tooltip": "",
         "color": "",
-        "bgcolor": "",
+        "bgcolor": "#547792",
         "icon": "",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 90,
+        "x": 150,
         "y": 40,
         "wires": [
             [
@@ -2202,8 +2207,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 560,
-        "y": 160,
+        "x": 280,
+        "y": 100,
         "wires": [
             [
                 "ab05a80d.938a48"
@@ -2218,8 +2223,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 560,
-        "y": 120,
+        "x": 280,
+        "y": 140,
         "wires": [
             [
                 "ab05a80d.938a48"
@@ -2233,23 +2238,23 @@
         "name": "Export",
         "group": "5119bf0d.949f3",
         "order": 7,
-        "width": "3",
+        "width": "6",
         "height": "1",
         "passthru": false,
         "label": "Export",
         "tooltip": "",
         "color": "",
-        "bgcolor": "magenta",
+        "bgcolor": "#547792",
         "icon": "",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 350,
-        "y": 920,
+        "x": 150,
+        "y": 840,
         "wires": [
             [
-                "7008e74d.541f58",
-                "956ddf14.7f76e"
+                "956ddf14.7f76e",
+                "38686460.17e2bc"
             ]
         ]
     },
@@ -2260,23 +2265,23 @@
         "name": "Erase",
         "group": "5119bf0d.949f3",
         "order": 8,
-        "width": "3",
+        "width": "6",
         "height": "1",
         "passthru": false,
         "label": "Erase",
         "tooltip": "",
         "color": "",
-        "bgcolor": "red",
+        "bgcolor": "#547792",
         "icon": "",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 350,
-        "y": 720,
+        "x": 150,
+        "y": 640,
         "wires": [
             [
-                "5673cd26.1098b4",
-                "3fbd89d5.280db6"
+                "3fbd89d5.280db6",
+                "e9ea66d2.343878"
             ]
         ]
     },
@@ -2288,8 +2293,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 820,
+        "x": 680,
+        "y": 720,
         "wires": [
             [
                 "98bd47d5.4bc608"
@@ -2304,8 +2309,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 780,
+        "x": 680,
+        "y": 680,
         "wires": [
             [
                 "98bd47d5.4bc608"
@@ -2316,15 +2321,15 @@
         "id": "40c4814c.8e25a",
         "type": "exec",
         "z": "465cfd27.107674",
-        "command": "zip -r ",
+        "command": "sudo zip -r ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Zip Stills",
-        "x": 980,
-        "y": 900,
+        "x": 880,
+        "y": 820,
         "wires": [
             [],
             [],
@@ -2341,8 +2346,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 540,
-        "y": 980,
+        "x": 340,
+        "y": 940,
         "wires": [
             [
                 "f6a819d7.be6028"
@@ -2357,8 +2362,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1160,
-        "y": 960,
+        "x": 1060,
+        "y": 840,
         "wires": [
             [
                 "f6a819d7.be6028"
@@ -2369,15 +2374,15 @@
         "id": "7008e74d.541f58",
         "type": "exec",
         "z": "465cfd27.107674",
-        "command": "ls  /media/pi/usb",
+        "command": "ls  ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
-        "name": "",
-        "x": 560,
-        "y": 920,
+        "name": "usbDrive Dir",
+        "x": 510,
+        "y": 840,
         "wires": [
             [
                 "2941db3.3e69e24"
@@ -2391,11 +2396,11 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Find USB Stick",
-        "func": "var split = msg.payload.split('\\n');\n//node.warn(split);\nvar usbStick = '';\nif (split[1] == 'blinky-lite-cam')\n    usbStick = '/media/pi/usb/' + split[1] + '/stills.zip'; \nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/blinky-lite-cam/images/stills'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
+        "func": "var split = msg.payload.split('\\n');\n//node.warn(split);\nvar usbStick = '';\nif (split[0] == global.get('usbDriveData'))\n    usbStick = global.get('usbDrive') + '/' + global.get('usbDriveData') + '/stills.zip'; \nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' ' + global.get('imageStorageLocation') + '/stills'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
         "outputs": 2,
         "noerr": 0,
-        "x": 740,
-        "y": 900,
+        "x": 700,
+        "y": 840,
         "wires": [
             [
                 "40c4814c.8e25a"
@@ -2417,8 +2422,8 @@
         "cancel": "",
         "topic": "Missing USB Stick",
         "name": "Missing USB Stick",
-        "x": 950,
-        "y": 960,
+        "x": 910,
+        "y": 900,
         "wires": [
             [
                 "92bbd65e.8af508"
@@ -2433,8 +2438,8 @@
         "links": [
             "f2505e1a.73902"
         ],
-        "x": 675,
-        "y": 140,
+        "x": 415,
+        "y": 120,
         "wires": []
     },
     {
@@ -2446,7 +2451,7 @@
             "ab05a80d.938a48"
         ],
         "x": 55,
-        "y": 120,
+        "y": 40,
         "wires": [
             [
                 "c15fc208.a2ab7"
@@ -2461,8 +2466,8 @@
         "links": [
             "1ad3e821.09b9a8"
         ],
-        "x": 1295,
-        "y": 960,
+        "x": 1195,
+        "y": 940,
         "wires": []
     },
     {
@@ -2473,8 +2478,8 @@
         "links": [
             "f6a819d7.be6028"
         ],
-        "x": 255,
-        "y": 920,
+        "x": 55,
+        "y": 840,
         "wires": [
             [
                 "1b73d65.99f212a"
@@ -2489,8 +2494,8 @@
         "links": [
             "c95a1ca8.e9862"
         ],
-        "x": 895,
-        "y": 800,
+        "x": 795,
+        "y": 700,
         "wires": []
     },
     {
@@ -2501,8 +2506,8 @@
         "links": [
             "98bd47d5.4bc608"
         ],
-        "x": 215,
-        "y": 720,
+        "x": 55,
+        "y": 640,
         "wires": [
             [
                 "f232ecc8.ecafe"
@@ -2569,8 +2574,8 @@
         "func": "msg.topic = 'timelapseSettings';\nglobal.set(msg.topic,msg.payload)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 300,
-        "y": 420,
+        "x": 200,
+        "y": 360,
         "wires": [
             [
                 "be30389e.0ba158",
@@ -2819,8 +2824,8 @@
             "d4bbd794.b49c98",
             "82971844.2d8bd8"
         ],
-        "x": 195,
-        "y": 240,
+        "x": 55,
+        "y": 280,
         "wires": [
             [
                 "df46fa69.6ba2c8"
@@ -2851,8 +2856,8 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 230,
-        "y": 320,
+        "x": 210,
+        "y": 280,
         "wires": [
             [
                 "6c8d7faa.85f82"
@@ -2867,8 +2872,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 130,
-        "y": 420,
+        "x": 150,
+        "y": 320,
         "wires": [
             [
                 "72e9b995.93c328"
@@ -2901,17 +2906,18 @@
         "name": "Timelapse",
         "group": "a09e9315.ae729",
         "order": 1,
-        "width": "6",
-        "height": "1",
+        "width": "0",
+        "height": "0",
         "passthru": false,
         "label": "{{msg.topic}}",
+        "tooltip": "",
         "color": "",
-        "bgcolor": "",
+        "bgcolor": "#547792",
         "icon": "",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 250,
+        "x": 190,
         "y": 60,
         "wires": [
             [
@@ -2928,8 +2934,8 @@
         "format": "lines",
         "chunk": false,
         "sendError": false,
-        "x": 320,
-        "y": 240,
+        "x": 200,
+        "y": 420,
         "wires": [
             [
                 "ba4e4770.b3b0f8"
@@ -2944,8 +2950,8 @@
         "func": "global.set('timelapseCounter', msg.payload);\nmsg.topic = 'displayValue'\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 550,
-        "y": 240,
+        "x": 450,
+        "y": 420,
         "wires": [
             [
                 "bf422c55.51687"
@@ -2961,8 +2967,8 @@
             "d4bbd794.b49c98",
             "82971844.2d8bd8"
         ],
-        "x": 155,
-        "y": 240,
+        "x": 55,
+        "y": 420,
         "wires": [
             [
                 "7c6bf932.2a4578"
@@ -2981,8 +2987,8 @@
         "label": "Image",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1350,
-        "y": 240,
+        "x": 990,
+        "y": 440,
         "wires": []
     },
     {
@@ -2994,8 +3000,8 @@
         "appendNewline": false,
         "createDir": false,
         "overwriteFile": "true",
-        "x": 1590,
-        "y": 120,
+        "x": 1070,
+        "y": 320,
         "wires": [
             []
         ]
@@ -3005,10 +3011,10 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "compile settings",
-        "func": "var loopRunning = flow.get('loopRunning');\nif (loopRunning)\n{\n    flow.set('loopRunning',!loopRunning);\n    return [msg,null];   \n}\nelse\n{\n    flow.set('loopRunning',!loopRunning);\n    var cameraSettings = global.get('cameraSettings');\n    var timelapseSettings = global.get('timelapseSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in timelapseSettings)\n    {\n        if (timelapseSettings[key].enabled && key != 'd')\n        {\n            commandString = commandString + ' -'+ key + ' ' + timelapseSettings[key].value;\n        }\n    }\n    commandString = commandString + ' -o /media/pi/blinky-lite-cam/images/latest.jpg';\n    flow.set('commandLineArgs',commandString);\n    var maxImages = Math.round((timelapseSettings['d'].value) / (Number(timelapseSettings['t'].value) / 1000));\n    flow.set('maxImages', maxImages);\n    return [null,msg];    \n}\n\n",
+        "func": "var loopRunning = flow.get('loopRunning');\nif (loopRunning)\n{\n    flow.set('loopRunning',!loopRunning);\n    return [msg,null];   \n}\nelse\n{\n    flow.set('loopRunning',!loopRunning);\n    var cameraSettings = global.get('cameraSettings');\n    var timelapseSettings = global.get('timelapseSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in timelapseSettings)\n    {\n        if (timelapseSettings[key].enabled && key != 'd')\n        {\n            commandString = commandString + ' -'+ key + ' ' + timelapseSettings[key].value;\n        }\n    }\n    commandString = commandString + ' -o ' + global.get('imageStorageLocation') + '/latest.jpg';\n    flow.set('commandLineArgs',commandString);\n    var maxImages = Math.round((timelapseSettings['d'].value) / (Number(timelapseSettings['t'].value) / 1000));\n    flow.set('maxImages', maxImages);\n    msg.payload = global.get('imageStorageLocation') + '/timelapse/*.jpg'\n    return [null,msg];    \n}\n\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 420,
+        "x": 360,
         "y": 60,
         "wires": [
             [
@@ -3024,11 +3030,11 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Incr Timelapse",
-        "func": "var timelapseCounter = global.get('timelapseCounter');\nvar counter = Number(timelapseCounter);\nif (msg.payload.code == 0) counter = counter + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\ntimelapseCounter = prefix + counter.toString();\nglobal.set('timelapseCounter', timelapseCounter);\nvar currentCount = {'topic':'timelapseCounter','payload':timelapseCounter};\nmsg.payload = '/media/pi/blinky-lite-cam/images/timelapse/image' + timelapseCounter + '.jpg';\nreturn [msg, currentCount];",
+        "func": "var timelapseCounter = global.get('timelapseCounter');\nvar counter = Number(timelapseCounter);\nif (msg.payload.code == 0) counter = counter + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\ntimelapseCounter = prefix + counter.toString();\nglobal.set('timelapseCounter', timelapseCounter);\nvar currentCount = {'topic':'timelapseCounter','payload':timelapseCounter};\nmsg.payload = global.get('imageStorageLocation') + '/latest.jpg '  + global.get('imageStorageLocation') + '/timelapse/image' + timelapseCounter + '.jpg';\nreturn [msg, currentCount];",
         "outputs": 2,
         "noerr": 0,
-        "x": 1080,
-        "y": 200,
+        "x": 740,
+        "y": 260,
         "wires": [
             [
                 "fa45f563.125c08"
@@ -3043,15 +3049,15 @@
         "id": "fa45f563.125c08",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "cp /media/pi/blinky-lite-cam/images/latest.jpg ",
+        "command": "cp ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Copy to timelapse",
-        "x": 1350,
-        "y": 160,
+        "x": 950,
+        "y": 240,
         "wires": [
             [],
             [],
@@ -3130,14 +3136,14 @@
         "id": "cecdcb2d.cf21d8",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "rm /media/pi/blinky-lite-cam/images/timelapse/*.jpg",
-        "addpay": false,
+        "command": "rm ",
+        "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Clear timelapse directory",
-        "x": 630,
+        "x": 590,
         "y": 80,
         "wires": [
             [],
@@ -3155,7 +3161,7 @@
         "func": "global.set('timelapseCounter', '0000');\nreturn {'topic':'timelapseCounter','payload':'0000'};",
         "outputs": 1,
         "noerr": 0,
-        "x": 890,
+        "x": 850,
         "y": 80,
         "wires": [
             [
@@ -3171,7 +3177,7 @@
         "func": "var timelapseButton = {'topic':'Timelapse','payload':''}\nvar loopRunning = flow.get('loopRunning');\nif (!loopRunning)\n{\n    return [timelapseButton,null];\n}\nvar timelapseCounter = global.get('timelapseCounter');\nvar maxImages = flow.get('maxImages');\nvar counter = Number(timelapseCounter);\nvar commandLineArgs = flow.get('commandLineArgs');\nif (counter >= maxImages)\n{\n    msg = null;\n}\nelse\n{\n    msg.payload = commandLineArgs;    \n    timelapseButton.topic = 'Abort'\n}\n\nreturn [timelapseButton,msg];",
         "outputs": 2,
         "noerr": 0,
-        "x": 1100,
+        "x": 1080,
         "y": 80,
         "wires": [
             [
@@ -3193,8 +3199,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Run Camera",
-        "x": 1290,
-        "y": 80,
+        "x": 550,
+        "y": 260,
         "wires": [
             [],
             [],
@@ -3211,8 +3217,8 @@
         "links": [
             "e4553bbb.06f808"
         ],
-        "x": 1495,
-        "y": 200,
+        "x": 1115,
+        "y": 180,
         "wires": []
     },
     {
@@ -3224,7 +3230,7 @@
             "a0b6fb97.07c7b8",
             "e3d16b59.b3c0f8"
         ],
-        "x": 925,
+        "x": 935,
         "y": 120,
         "wires": [
             [
@@ -3240,8 +3246,8 @@
         "links": [
             "b73e7c5c.a58ae"
         ],
-        "x": 1245,
-        "y": 40,
+        "x": 1235,
+        "y": 80,
         "wires": []
     },
     {
@@ -3252,7 +3258,7 @@
         "links": [
             "6b13485f.9d4da8"
         ],
-        "x": 125,
+        "x": 55,
         "y": 60,
         "wires": [
             [
@@ -3269,8 +3275,8 @@
             "d4bbd794.b49c98",
             "82971844.2d8bd8"
         ],
-        "x": 155,
-        "y": 180,
+        "x": 55,
+        "y": 360,
         "wires": [
             [
                 "a587fca6.92b5c"
@@ -3285,8 +3291,8 @@
         "func": "flow.set('loopRunning',false);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 300,
-        "y": 180,
+        "x": 180,
+        "y": 360,
         "wires": [
             []
         ]
@@ -3299,8 +3305,8 @@
         "links": [
             "e4553bbb.06f808"
         ],
-        "x": 585,
-        "y": 40,
+        "x": 495,
+        "y": 20,
         "wires": []
     },
     {
@@ -3314,18 +3320,19 @@
         "height": "1",
         "passthru": false,
         "label": "Export",
+        "tooltip": "",
         "color": "",
-        "bgcolor": "magenta",
+        "bgcolor": "#547792",
         "icon": "",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 250,
+        "x": 170,
         "y": 960,
         "wires": [
             [
-                "4a832090.e517a",
-                "6a4ca3f6.23a3cc"
+                "6a4ca3f6.23a3cc",
+                "316fd85c.41b178"
             ]
         ]
     },
@@ -3333,15 +3340,15 @@
         "id": "d3cb13bd.9fe12",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "zip -r ",
+        "command": "sudo zip -r ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Zip Stills",
-        "x": 880,
-        "y": 940,
+        "x": 840,
+        "y": 960,
         "wires": [
             [],
             [],
@@ -3358,8 +3365,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 640,
-        "y": 1080,
+        "x": 300,
+        "y": 1060,
         "wires": [
             [
                 "20152733.38cda8"
@@ -3374,8 +3381,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1060,
-        "y": 1000,
+        "x": 1000,
+        "y": 960,
         "wires": [
             [
                 "20152733.38cda8"
@@ -3386,14 +3393,14 @@
         "id": "4a832090.e517a",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "ls  /media/pi/usb",
+        "command": "ls ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
-        "name": "",
-        "x": 460,
+        "name": "usbDriv Dir",
+        "x": 470,
         "y": 960,
         "wires": [
             [
@@ -3408,11 +3415,11 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Find USB Stick",
-        "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nif (split[1] == 'blinky-lite-cam')\n    usbStick = '/media/pi/usb/' + split[1] + '/timelapse.zip'; \nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/blinky-lite-cam/images/timelapse'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];\n\n",
+        "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nif (split[0] == global.get('usbDriveData'))\n    usbStick = global.get('usbDrive') + '/' + global.get('usbDriveData') + '/timelapse.zip'; \nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' ' + global.get('imageStorageLocation') + '/timelapse'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 640,
-        "y": 940,
+        "x": 660,
+        "y": 960,
         "wires": [
             [
                 "d3cb13bd.9fe12"
@@ -3436,8 +3443,8 @@
         "raw": false,
         "topic": "Missing USB Stick",
         "name": "Missing USB Stick",
-        "x": 850,
-        "y": 1000,
+        "x": 870,
+        "y": 1020,
         "wires": [
             [
                 "ff267117.cccf1"
@@ -3452,8 +3459,8 @@
         "links": [
             "b77bcad8.fcf618"
         ],
-        "x": 1175,
-        "y": 1020,
+        "x": 1115,
+        "y": 1060,
         "wires": []
     },
     {
@@ -3464,7 +3471,7 @@
         "links": [
             "20152733.38cda8"
         ],
-        "x": 145,
+        "x": 65,
         "y": 960,
         "wires": [
             [
@@ -3476,15 +3483,15 @@
         "id": "bb25b066.d7841",
         "type": "exec",
         "z": "4c830eaa.25d9d",
-        "command": "rm /media/pi/blinky-lite-cam/images/timelapse/*.jpg",
-        "addpay": false,
+        "command": "rm ",
+        "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Clear timelapse directory",
-        "x": 570,
-        "y": 700,
+        "x": 530,
+        "y": 780,
         "wires": [
             [],
             [],
@@ -3502,8 +3509,8 @@
         "func": "global.set('timelapseCounter', '0000');\nreturn {'topic':'displayValue','payload':'0000'};",
         "outputs": 1,
         "noerr": 0,
-        "x": 830,
-        "y": 700,
+        "x": 790,
+        "y": 780,
         "wires": [
             [
                 "aa62bfeb.4e782"
@@ -3523,17 +3530,17 @@
         "label": "Erase",
         "tooltip": "",
         "color": "",
-        "bgcolor": "red",
+        "bgcolor": "#547792",
         "icon": "",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 310,
-        "y": 700,
+        "x": 150,
+        "y": 780,
         "wires": [
             [
-                "bb25b066.d7841",
-                "2ff8f74e.216ed8"
+                "2ff8f74e.216ed8",
+                "bf6ae528.d8f298"
             ]
         ]
     },
@@ -3545,8 +3552,8 @@
         "func": "msg.enabled = false;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 800,
+        "x": 460,
+        "y": 860,
         "wires": [
             [
                 "95455cb3.56d06"
@@ -3561,8 +3568,8 @@
         "func": "msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 760,
+        "x": 740,
+        "y": 820,
         "wires": [
             [
                 "95455cb3.56d06"
@@ -3577,8 +3584,8 @@
         "links": [
             "f9d0c414.8a2098"
         ],
-        "x": 895,
-        "y": 780,
+        "x": 935,
+        "y": 860,
         "wires": []
     },
     {
@@ -3589,8 +3596,8 @@
         "links": [
             "95455cb3.56d06"
         ],
-        "x": 185,
-        "y": 700,
+        "x": 65,
+        "y": 780,
         "wires": [
             [
                 "2690b52b.13900a"
@@ -3605,7 +3612,7 @@
         "func": "return {'topic':'Timelapse', 'payload':''};",
         "outputs": 1,
         "noerr": 0,
-        "x": 170,
+        "x": 160,
         "y": 120,
         "wires": [
             [
@@ -3622,7 +3629,7 @@
             "d4bbd794.b49c98",
             "82971844.2d8bd8"
         ],
-        "x": 75,
+        "x": 55,
         "y": 120,
         "wires": [
             [
@@ -4781,7 +4788,7 @@
         "mode": "text",
         "delay": 300,
         "topic": "displayValue",
-        "x": 410,
+        "x": 190,
         "y": 380,
         "wires": [
             [
@@ -4800,14 +4807,15 @@
         "height": "1",
         "passthru": false,
         "label": "+",
-        "color": "",
+        "tooltip": "",
+        "color": "black",
         "bgcolor": "",
         "icon": "",
         "payload": "1",
         "payloadType": "num",
         "topic": "addOne",
-        "x": 430,
-        "y": 560,
+        "x": 190,
+        "y": 480,
         "wires": [
             [
                 "f34d1d61.4881e"
@@ -4825,14 +4833,15 @@
         "height": "1",
         "passthru": false,
         "label": "-",
-        "color": "",
+        "tooltip": "",
+        "color": "black",
         "bgcolor": "",
         "icon": "",
         "payload": "-1",
         "payloadType": "num",
         "topic": "subtractOne",
-        "x": 430,
-        "y": 520,
+        "x": 190,
+        "y": 440,
         "wires": [
             [
                 "f34d1d61.4881e"
@@ -4851,8 +4860,8 @@
         "label": "Display",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 440,
-        "y": 620,
+        "x": 200,
+        "y": 520,
         "wires": []
     },
     {
@@ -4860,10 +4869,10 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "Get Display Value",
-        "func": "var stillImageCounter = Number(global.get('stillImageCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  stillImageCounter) counter = stillImageCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/blinky-lite-cam/images';\nvar displayFileName  = '/stills/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "func": "var stillImageCounter = Number(global.get('stillImageCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  stillImageCounter) counter = stillImageCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = global.get('imageStorageLocation');\nvar displayFileName  = '/stills/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
         "outputs": 2,
         "noerr": 0,
-        "x": 650,
+        "x": 410,
         "y": 380,
         "wires": [
             [
@@ -4889,8 +4898,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 790,
-        "y": 560,
+        "x": 610,
+        "y": 440,
         "wires": [
             [
                 "e65616bc.46b538"
@@ -4908,8 +4917,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Get Date",
-        "x": 860,
-        "y": 380,
+        "x": 620,
+        "y": 360,
         "wires": [
             [
                 "365cfe5.f9b9602"
@@ -4926,7 +4935,7 @@
         "func": "var timestampNow = new Date();\nvar fileName = flow.get('displayFileName');\nvar fileTimeStamp = msg.payload.split('\\n')[0];\nvar imageName = fileName+ '?time=' + timestampNow.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':fileTimeStamp}};\nreturn newMsg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1040,
+        "x": 800,
         "y": 360,
         "wires": [
             [
@@ -4942,7 +4951,7 @@
         "links": [
             "f319a718.c09eb8"
         ],
-        "x": 1335,
+        "x": 1255,
         "y": 60,
         "wires": []
     },
@@ -4956,8 +4965,8 @@
             "dd215dc9.e71ff",
             "e8d4d65e.9e0298"
         ],
-        "x": 135,
-        "y": 520,
+        "x": 55,
+        "y": 380,
         "wires": [
             [
                 "e65616bc.46b538",
@@ -4975,7 +4984,7 @@
             "d90aa84b.972ee8",
             "f319a718.c09eb8"
         ],
-        "x": 735,
+        "x": 615,
         "y": 260,
         "wires": []
     },
@@ -4989,7 +4998,7 @@
             "e8d4d65e.9e0298"
         ],
         "x": 855,
-        "y": 240,
+        "y": 140,
         "wires": [
             [
                 "2fadadf4.343c22"
@@ -5006,8 +5015,8 @@
             "d90aa84b.972ee8",
             "f319a718.c09eb8"
         ],
-        "x": 1075,
-        "y": 720,
+        "x": 835,
+        "y": 640,
         "wires": []
     },
     {
@@ -5018,8 +5027,8 @@
         "links": [
             "e8d4d65e.9e0298"
         ],
-        "x": 955,
-        "y": 180,
+        "x": 855,
+        "y": 100,
         "wires": [
             [
                 "c0e3dd95.24f7b"
@@ -5039,8 +5048,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1180,
-        "y": 340,
+        "x": 940,
+        "y": 500,
         "wires": [
             []
         ]
@@ -5059,8 +5068,8 @@
         "mode": "text",
         "delay": 300,
         "topic": "displayValue",
-        "x": 310,
-        "y": 360,
+        "x": 190,
+        "y": 620,
         "wires": [
             [
                 "2682ed4e.ef70c2"
@@ -5078,14 +5087,15 @@
         "height": "1",
         "passthru": false,
         "label": "+",
-        "color": "",
+        "tooltip": "",
+        "color": "black",
         "bgcolor": "",
         "icon": "",
         "payload": "1",
         "payloadType": "num",
         "topic": "addOne",
-        "x": 330,
-        "y": 540,
+        "x": 190,
+        "y": 580,
         "wires": [
             [
                 "2682ed4e.ef70c2"
@@ -5103,14 +5113,15 @@
         "height": "1",
         "passthru": false,
         "label": "-",
-        "color": "",
+        "tooltip": "",
+        "color": "black",
         "bgcolor": "",
         "icon": "",
         "payload": "-1",
         "payloadType": "num",
         "topic": "subtractOne",
-        "x": 330,
-        "y": 500,
+        "x": 190,
+        "y": 540,
         "wires": [
             [
                 "2682ed4e.ef70c2"
@@ -5129,8 +5140,8 @@
         "label": "Display",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 340,
-        "y": 600,
+        "x": 200,
+        "y": 680,
         "wires": []
     },
     {
@@ -5138,11 +5149,11 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Get Display Value",
-        "func": "var timelapseCounter = Number(global.get('timelapseCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  timelapseCounter) counter = timelapseCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = '/media/pi/blinky-lite-cam/images';\nvar displayFileName  = '/timelapse/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "func": "var timelapseCounter = Number(global.get('timelapseCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  timelapseCounter) counter = timelapseCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = global.get('imageStorageLocation');\nvar displayFileName  = '/timelapse/image' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
         "outputs": 2,
         "noerr": 0,
-        "x": 550,
-        "y": 360,
+        "x": 390,
+        "y": 500,
         "wires": [
             [
                 "6a74dd71.9801e4"
@@ -5167,8 +5178,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 690,
-        "y": 540,
+        "x": 570,
+        "y": 680,
         "wires": [
             [
                 "7dd82750.472798"
@@ -5186,8 +5197,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Get Date",
-        "x": 760,
-        "y": 360,
+        "x": 580,
+        "y": 500,
         "wires": [
             [
                 "fef3a358.1bd03"
@@ -5204,8 +5215,8 @@
         "func": "var timestampNow = new Date();\nvar fileName = flow.get('displayFileName');\nvar fileTimeStamp = msg.payload.split('\\n')[0];\nvar imageName = fileName+ '?time=' + timestampNow.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':fileTimeStamp}};\nreturn newMsg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 940,
-        "y": 340,
+        "x": 760,
+        "y": 500,
         "wires": [
             [
                 "97a42bf0.773748"
@@ -5221,8 +5232,8 @@
             "c57923a7.78325",
             "5efdc7b.0900b38"
         ],
-        "x": 775,
-        "y": 240,
+        "x": 615,
+        "y": 420,
         "wires": []
     },
     {
@@ -5234,8 +5245,8 @@
             "aa62bfeb.4e782",
             "bf422c55.51687"
         ],
-        "x": 1135,
-        "y": 240,
+        "x": 855,
+        "y": 440,
         "wires": [
             [
                 "b651eb36.a7b468"
@@ -5252,8 +5263,8 @@
             "c57923a7.78325",
             "5efdc7b.0900b38"
         ],
-        "x": 1035,
-        "y": 700,
+        "x": 935,
+        "y": 780,
         "wires": []
     },
     {
@@ -5264,8 +5275,8 @@
         "links": [
             "aa62bfeb.4e782"
         ],
-        "x": 1435,
-        "y": 80,
+        "x": 915,
+        "y": 340,
         "wires": [
             [
                 "48798c01.ab5e94"
@@ -5282,8 +5293,8 @@
             "aa62bfeb.4e782",
             "bf422c55.51687"
         ],
-        "x": 140,
-        "y": 440,
+        "x": 55,
+        "y": 500,
         "wires": [
             [
                 "2682ed4e.ef70c2",
@@ -5299,8 +5310,8 @@
         "func": "msg.payload = global.get('timelapseCounter');\nmsg.topic = 'displayValue';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1660,
-        "y": 180,
+        "x": 1200,
+        "y": 240,
         "wires": [
             [
                 "5a7c3d96.8b2594"
@@ -5315,8 +5326,154 @@
         "links": [
             "5efdc7b.0900b38"
         ],
-        "x": 1720,
+        "x": 1335,
         "y": 240,
         "wires": []
+    },
+    {
+        "id": "d8206a85.87da78",
+        "type": "inject",
+        "z": "465cfd27.107674",
+        "name": "imageStorageLocation",
+        "topic": "imageStorageLocation",
+        "payload": "IMAGESTORAGELOCATION",
+        "payloadType": "env",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 1040,
+        "wires": [
+            [
+                "98659347.32df9"
+            ]
+        ]
+    },
+    {
+        "id": "98659347.32df9",
+        "type": "function",
+        "z": "465cfd27.107674",
+        "name": "Save Env Var",
+        "func": "global.set(msg.topic,msg.payload);\nreturn null;",
+        "outputs": 0,
+        "noerr": 0,
+        "x": 400,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "e9ea66d2.343878",
+        "type": "function",
+        "z": "465cfd27.107674",
+        "name": "stills images",
+        "func": "msg.payload = global.get('imageStorageLocation') + '/stills/*.jpg';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 640,
+        "wires": [
+            [
+                "5673cd26.1098b4"
+            ]
+        ]
+    },
+    {
+        "id": "bf6ae528.d8f298",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "timelapse images",
+        "func": "msg.payload = global.get('imageStorageLocation') + '/timelapse/*.jpg';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 780,
+        "wires": [
+            [
+                "bb25b066.d7841"
+            ]
+        ]
+    },
+    {
+        "id": "aaff6159.db08b",
+        "type": "comment",
+        "z": "465cfd27.107674",
+        "name": "Get the USB drive to automount",
+        "info": "https://www.raspberrypi.org/forums/viewtopic.php?t=205016#p1271455",
+        "x": 190,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "38686460.17e2bc",
+        "type": "function",
+        "z": "465cfd27.107674",
+        "name": "get usbDrive",
+        "func": "msg.payload = global.get('usbDrive');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 840,
+        "wires": [
+            [
+                "7008e74d.541f58"
+            ]
+        ]
+    },
+    {
+        "id": "16738ae1.95fa15",
+        "type": "inject",
+        "z": "465cfd27.107674",
+        "name": "usbDrive",
+        "topic": "usbDrive",
+        "payload": "USBDRIVE",
+        "payloadType": "env",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 1080,
+        "wires": [
+            [
+                "98659347.32df9"
+            ]
+        ]
+    },
+    {
+        "id": "28ec318d.04011e",
+        "type": "inject",
+        "z": "465cfd27.107674",
+        "name": "usbDriveData",
+        "topic": "usbDriveData",
+        "payload": "USBDRIVEDATA",
+        "payloadType": "env",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 1120,
+        "wires": [
+            [
+                "98659347.32df9"
+            ]
+        ]
+    },
+    {
+        "id": "316fd85c.41b178",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "get usbDrive",
+        "func": "msg.payload = global.get('usbDrive');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 960,
+        "wires": [
+            [
+                "4a832090.e517a"
+            ]
+        ]
     }
 ]
