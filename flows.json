@@ -182,7 +182,7 @@
         "tab": "d331f05e.b54d3",
         "order": 3,
         "disp": false,
-        "width": "12",
+        "width": "6",
         "collapse": false
     },
     {
@@ -308,8 +308,17 @@
         "tab": "3bda1a23.191ae6",
         "order": 3,
         "disp": false,
-        "width": "12",
+        "width": "6",
         "collapse": false
+    },
+    {
+        "id": "95693647.d3fac8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "2109abd1.7997a4",
+        "order": 9,
+        "width": "6",
+        "height": 1
     },
     {
         "id": "c3854fdc.60812",
@@ -340,8 +349,8 @@
         "group": "df94e314.43c5c",
         "name": "Image Display",
         "order": 2,
-        "width": "12",
-        "height": "10",
+        "width": "6",
+        "height": "6",
         "format": "<script type=\"text/javascript\">\n//var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);\nif (!!navigator.platform && /iPhone/.test(navigator.platform))\n{\n    $(\"#image\").attr(\"height\", \"260\");\n    $(\"#image\").attr(\"width\",  \"347\");\n    \n}\n</script>\n<div>\n    <table>\n        <tbody>\n            <tr align=\"center\">\n                <td align=\"center\">\n                    <img id=\"image\" src='{{msg.payload.image}}' width=\"100%\" >\n                </td>\n            </tr>\n            <tr align=\"center\">\n                <td id=\"imageDate\" align=\"center\">\n                   {{msg.payload.date}}\n                </td>\n            </tr>        \n        </tbody>\n    </table>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -5042,8 +5051,8 @@
         "group": "55578abb.5b8b84",
         "name": "Image Display",
         "order": 2,
-        "width": "12",
-        "height": "10",
+        "width": "6",
+        "height": "6",
         "format": "<script type=\"text/javascript\">\n//var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);\nif (!!navigator.platform && /iPhone/.test(navigator.platform))\n{\n    $(\"#image\").attr(\"height\", \"260\");\n    $(\"#image\").attr(\"width\",  \"347\");\n    \n}\n</script>\n<div>\n    <table>\n        <tbody>\n            <tr align=\"center\">\n                <td align=\"center\">\n                    <img id=\"image\" src='{{msg.payload.image}}' width=\"100%\" >\n                </td>\n            </tr>\n            <tr align=\"center\">\n                <td id=\"imageDate\" align=\"center\">\n                   {{msg.payload.date}}\n                </td>\n            </tr>        \n        </tbody>\n    </table>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
