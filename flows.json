@@ -35,6 +35,13 @@
         "info": ""
     },
     {
+        "id": "e3ef5547.ae6478",
+        "type": "tab",
+        "label": "StarTrail",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "43d9f0b1.29583",
         "type": "tab",
         "label": "Movie Image",
@@ -321,6 +328,27 @@
         "height": 1
     },
     {
+        "id": "1dc81d38.c5eca3",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Star Trail",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "e750fcd4.11f87",
+        "type": "ui_group",
+        "z": "",
+        "name": "Star Trail",
+        "tab": "1dc81d38.c5eca3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "c3854fdc.60812",
         "type": "exec",
         "z": "465cfd27.107674",
@@ -396,7 +424,7 @@
         "type": "function",
         "z": "465cfd27.107674",
         "name": "compile settings",
-        "func": "var cameraSettings = global.get('cameraSettings');\nvar singleImageSettings = global.get('singleImageSettings');\nvar commandString = '';\nfor (var key in cameraSettings)\n{\n    if (cameraSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n}\nfor (var key in singleImageSettings)\n{\n    if (singleImageSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + singleImageSettings[key].value;\n}\nmsg.payload = commandString + ' -o ' + global.get('imageStorageLocation') + '/latest.jpg';\nreturn msg;",
+        "func": "var cameraSettings = global.get('cameraSettings');\nvar singleImageSettings = global.get('singleImageSettings');\nvar commandString = '';\nfor (var key in cameraSettings)\n{\n    if (cameraSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n}\nfor (var key in singleImageSettings)\n{\n    if (singleImageSettings[key].enabled)\n        commandString = commandString + ' -'+ key + ' ' + singleImageSettings[key].value;\n}\nmsg.payload = commandString + ' -o ' + global.get('imageStorageLocation') + '/latest.jpg';\n//node.warn('raspistill ' + msg.payload);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 300,
@@ -1923,7 +1951,8 @@
             "d16dd76c.35aa58",
             "f25b68ed.28adb8",
             "b464c768.661858",
-            "1da9c207.8c0e3e"
+            "1da9c207.8c0e3e",
+            "b648909b.afd2e"
         ],
         "x": 195,
         "y": 220,
@@ -2457,7 +2486,10 @@
         "z": "465cfd27.107674",
         "name": "",
         "links": [
-            "ab05a80d.938a48"
+            "1624cebe.68ba01",
+            "249da6c8.e327aa",
+            "ab05a80d.938a48",
+            "b2376fca.76c09"
         ],
         "x": 55,
         "y": 40,
@@ -3183,14 +3215,15 @@
         "type": "function",
         "z": "4c830eaa.25d9d",
         "name": "Start Counting",
-        "func": "var timelapseButton = {'topic':'Timelapse','payload':''}\nvar loopRunning = flow.get('loopRunning');\nif (!loopRunning)\n{\n    return [timelapseButton,null];\n}\nvar timelapseCounter = global.get('timelapseCounter');\nvar maxImages = flow.get('maxImages');\nvar counter = Number(timelapseCounter);\nvar commandLineArgs = flow.get('commandLineArgs');\nif (counter >= maxImages)\n{\n    msg = null;\n}\nelse\n{\n    msg.payload = commandLineArgs;    \n    timelapseButton.topic = 'Abort'\n}\n\nreturn [timelapseButton,msg];",
+        "func": "var timelapseButton = {'topic':'Timelapse','payload':''}\nvar loopRunning = flow.get('loopRunning');\nif (!loopRunning)\n{\n    return [timelapseButton,null];\n}\nvar timelapseCounter = global.get('timelapseCounter');\nvar maxImages = flow.get('maxImages');\nvar counter = Number(timelapseCounter);\nvar commandLineArgs = flow.get('commandLineArgs');\nif (counter >= maxImages)\n{\n    msg = null;\n}\nelse\n{\n    msg.payload = commandLineArgs;  \n//    node.warn('raspistill ' + commandLineArgs);\n    timelapseButton.topic = 'Abort'\n}\n\nreturn [timelapseButton,msg];",
         "outputs": 2,
         "noerr": 0,
         "x": 1080,
         "y": 80,
         "wires": [
             [
-                "6b13485f.9d4da8"
+                "6b13485f.9d4da8",
+                "2c4f90d.4e0567"
             ],
             [
                 "c06dfc60.994e9"
@@ -3265,7 +3298,8 @@
         "z": "4c830eaa.25d9d",
         "name": "",
         "links": [
-            "6b13485f.9d4da8"
+            "6b13485f.9d4da8",
+            "8ec220a7.737c4"
         ],
         "x": 55,
         "y": 60,
@@ -3635,8 +3669,9 @@
         "z": "4c830eaa.25d9d",
         "name": "Init",
         "links": [
+            "b2376fca.76c09",
             "d4bbd794.b49c98",
-            "82971844.2d8bd8"
+            "8ec220a7.737c4"
         ],
         "x": 55,
         "y": 120,
@@ -5484,5 +5519,186 @@
                 "4a832090.e517a"
             ]
         ]
+    },
+    {
+        "id": "7dd068e8.fe00c8",
+        "type": "exec",
+        "z": "e3ef5547.ae6478",
+        "command": "raspistill ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "StarTrail",
+        "x": 680,
+        "y": 80,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "34dcba06.16b7b6",
+        "type": "status",
+        "z": "e3ef5547.ae6478",
+        "name": "",
+        "scope": [
+            "7dd068e8.fe00c8"
+        ],
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "ebe58e38.f05c3"
+            ]
+        ]
+    },
+    {
+        "id": "ebe58e38.f05c3",
+        "type": "function",
+        "z": "e3ef5547.ae6478",
+        "name": "starTrailPID",
+        "func": "var starTrailPID = -1;\nif ((msg.status.fill == \"blue\") && (msg.status.shape == \"dot\"))\n{\n    starTrailPID = Number(msg.status.text.split(':')[1]);\n}\nvar enabled = false;\nif (starTrailPID < 0) enabled = true;\nreturn [\n    {topic:'Still',payload:'','enabled':enabled},\n    {topic:'Timelapse',payload:'','enabled':enabled},\n    {topic:'StarTrail',payload:'','enabled':enabled},\n    ];",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "b2376fca.76c09"
+            ],
+            [
+                "8ec220a7.737c4"
+            ],
+            [
+                "a7b7156b.1ae2f8"
+            ]
+        ]
+    },
+    {
+        "id": "b2376fca.76c09",
+        "type": "link out",
+        "z": "e3ef5547.ae6478",
+        "name": "StarTrail PID to Still",
+        "links": [
+            "48aa4cf4.e4d044",
+            "f2505e1a.73902"
+        ],
+        "x": 395,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8ec220a7.737c4",
+        "type": "link out",
+        "z": "e3ef5547.ae6478",
+        "name": "StarTrail PID to TimeLapse",
+        "links": [
+            "48aa4cf4.e4d044",
+            "b73e7c5c.a58ae"
+        ],
+        "x": 395,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "249da6c8.e327aa",
+        "type": "link out",
+        "z": "4c830eaa.25d9d",
+        "name": "Disable Still button",
+        "links": [
+            "f2505e1a.73902"
+        ],
+        "x": 1295,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "2c4f90d.4e0567",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "Disable Still button",
+        "func": "if (msg.topic == 'Abort') msg.enabled = false;\nif (msg.topic == 'Timelapse') msg.enabled = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1170,
+        "y": 20,
+        "wires": [
+            [
+                "249da6c8.e327aa"
+            ]
+        ]
+    },
+    {
+        "id": "f8304bc9.cdcae8",
+        "type": "ui_button",
+        "z": "e3ef5547.ae6478",
+        "name": "Start Star Trail",
+        "group": "e750fcd4.11f87",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Start Star Trail",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#547792",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 218,
+        "y": 75,
+        "wires": [
+            [
+                "6026f452.7b421c"
+            ]
+        ]
+    },
+    {
+        "id": "6026f452.7b421c",
+        "type": "function",
+        "z": "e3ef5547.ae6478",
+        "name": "Setup 8 hour StarTrail",
+        "func": "//msg.payload = '-bm -tl 0 -ISO 800 -awb off -awbg 1,1 -t 28800000 -ss 6000000 -o ' + global.get('imageStorageLocation') + '/starTrail/image%04d.jpg';\nmsg.payload = '-bm -tl 0 -ISO 800 -awb off -awbg 1,1 -t 28800000 -ss 6000000 -o ' + global.get('imageStorageLocation') + '/starTrail/image%04d.jpg';\n//node.warn(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "7dd068e8.fe00c8"
+            ]
+        ]
+    },
+    {
+        "id": "8526a001.7dc26",
+        "type": "link in",
+        "z": "e3ef5547.ae6478",
+        "name": "Start Star Trail In",
+        "links": [
+            "a7b7156b.1ae2f8"
+        ],
+        "x": 95,
+        "y": 80,
+        "wires": [
+            [
+                "f8304bc9.cdcae8"
+            ]
+        ]
+    },
+    {
+        "id": "a7b7156b.1ae2f8",
+        "type": "link out",
+        "z": "e3ef5547.ae6478",
+        "name": "StarTrail PID to Star Trail",
+        "links": [
+            "8526a001.7dc26"
+        ],
+        "x": 395,
+        "y": 240,
+        "wires": []
     }
 ]
