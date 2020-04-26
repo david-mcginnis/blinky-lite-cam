@@ -14,6 +14,20 @@
         "info": ""
     },
     {
+        "id": "aecc47c0.144c78",
+        "type": "tab",
+        "label": "Movie",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "22b6830.477b37e",
+        "type": "tab",
+        "label": "Movie Settings",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "4c830eaa.25d9d",
         "type": "tab",
         "label": "TimeLapse Image",
@@ -39,20 +53,6 @@
         "type": "tab",
         "label": "StarTrail",
         "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "43d9f0b1.29583",
-        "type": "tab",
-        "label": "Movie Image",
-        "disabled": true,
-        "info": ""
-    },
-    {
-        "id": "b8390319.95ab",
-        "type": "tab",
-        "label": "Movie Settings",
-        "disabled": true,
         "info": ""
     },
     {
@@ -268,28 +268,6 @@
         "collapse": false
     },
     {
-        "id": "8e5e25d9.a83308",
-        "type": "ui_group",
-        "z": "",
-        "name": "Movie Settings",
-        "tab": "4ae97ecc.60f15",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "e30ec498.e5ecc8",
-        "type": "ui_group",
-        "z": "",
-        "name": "Movie",
-        "tab": "4ae97ecc.60f15",
-        "order": 2,
-        "disp": true,
-        "width": "12",
-        "collapse": false
-    },
-    {
         "id": "3bda1a23.191ae6",
         "type": "ui_tab",
         "z": "",
@@ -298,14 +276,6 @@
         "order": 2,
         "disabled": false,
         "hidden": false
-    },
-    {
-        "id": "4ae97ecc.60f15",
-        "type": "ui_tab",
-        "z": "",
-        "name": "QooCam Movie",
-        "icon": "dashboard",
-        "order": 3
     },
     {
         "id": "55578abb.5b8b84",
@@ -347,6 +317,58 @@
         "disp": true,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "62ccf798.fe2778",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Movie",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "12fa5cac.ba65b3",
+        "type": "ui_group",
+        "z": "",
+        "name": "Movie Settings",
+        "tab": "62ccf798.fe2778",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4f066c77.1406c4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Movies",
+        "tab": "62ccf798.fe2778",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "8395db7d.f47d48",
+        "type": "ui_group",
+        "z": "",
+        "name": "Movie Display",
+        "tab": "62ccf798.fe2778",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "70e4a545.aeec4c",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "12fa5cac.ba65b3",
+        "order": 9,
+        "width": "6",
+        "height": 1
     },
     {
         "id": "c3854fdc.60812",
@@ -1941,18 +1963,14 @@
         "name": "Init",
         "links": [
             "31146f06.888a9",
-            "a1cb2b65.d77838",
-            "88fcf382.3dcb1",
-            "69aab70f.9c4088",
-            "8c565e3b.2ecd9",
             "48aa4cf4.e4d044",
-            "a1f29fa6.01c5e",
-            "3ec76667.52135a",
-            "d16dd76c.35aa58",
-            "f25b68ed.28adb8",
-            "b464c768.661858",
-            "1da9c207.8c0e3e",
-            "b648909b.afd2e"
+            "6555d9b1.578458",
+            "69aab70f.9c4088",
+            "88fcf382.3dcb1",
+            "8c565e3b.2ecd9",
+            "8e85607d.ea3f",
+            "a1cb2b65.d77838",
+            "4c4791d1.4262d"
         ],
         "x": 195,
         "y": 220,
@@ -1965,7 +1983,8 @@
         "name": "Receive Init",
         "links": [
             "d4bbd794.b49c98",
-            "82971844.2d8bd8"
+            "82971844.2d8bd8",
+            "a565f554.727c58"
         ],
         "x": 55,
         "y": 400,
@@ -1982,7 +2001,8 @@
         "name": "Receive Init",
         "links": [
             "d4bbd794.b49c98",
-            "82971844.2d8bd8"
+            "82971844.2d8bd8",
+            "a565f554.727c58"
         ],
         "x": 75,
         "y": 140,
@@ -2484,9 +2504,8 @@
         "id": "f2505e1a.73902",
         "type": "link in",
         "z": "465cfd27.107674",
-        "name": "",
+        "name": "Still Button Enable",
         "links": [
-            "1624cebe.68ba01",
             "249da6c8.e327aa",
             "ab05a80d.938a48",
             "b2376fca.76c09"
@@ -2515,7 +2534,7 @@
         "id": "1ad3e821.09b9a8",
         "type": "link in",
         "z": "465cfd27.107674",
-        "name": "",
+        "name": "Export Button Enable ",
         "links": [
             "f6a819d7.be6028"
         ],
@@ -2863,7 +2882,8 @@
         "name": "Receive Init",
         "links": [
             "d4bbd794.b49c98",
-            "82971844.2d8bd8"
+            "82971844.2d8bd8",
+            "a565f554.727c58"
         ],
         "x": 55,
         "y": 280,
@@ -3006,7 +3026,8 @@
         "name": "Init",
         "links": [
             "d4bbd794.b49c98",
-            "82971844.2d8bd8"
+            "82971844.2d8bd8",
+            "a565f554.727c58"
         ],
         "x": 55,
         "y": 420,
@@ -3223,7 +3244,8 @@
         "wires": [
             [
                 "6b13485f.9d4da8",
-                "2c4f90d.4e0567"
+                "2c4f90d.4e0567",
+                "c3fd64ae.f73268"
             ],
             [
                 "c06dfc60.994e9"
@@ -3289,7 +3311,7 @@
             "b73e7c5c.a58ae"
         ],
         "x": 1235,
-        "y": 80,
+        "y": 160,
         "wires": []
     },
     {
@@ -3316,7 +3338,8 @@
         "name": "Init",
         "links": [
             "d4bbd794.b49c98",
-            "82971844.2d8bd8"
+            "82971844.2d8bd8",
+            "a565f554.727c58"
         ],
         "x": 55,
         "y": 360,
@@ -3671,7 +3694,8 @@
         "links": [
             "b2376fca.76c09",
             "d4bbd794.b49c98",
-            "8ec220a7.737c4"
+            "8ec220a7.737c4",
+            "a565f554.727c58"
         ],
         "x": 55,
         "y": 120,
@@ -3700,1121 +3724,6 @@
         "wires": [
             [
                 "c039a804.a62718"
-            ]
-        ]
-    },
-    {
-        "id": "4f1bacbd.732804",
-        "type": "function",
-        "z": "b8390319.95ab",
-        "name": "InitMovieSettings",
-        "func": "msg.topic = 'movieSettings';\nglobal.set(msg.topic,msg.payload)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 250,
-        "y": 360,
-        "wires": [
-            [
-                "bdcb0fd5.871d7",
-                "25d87e63.2d7e02",
-                "ba318dd0.f6751",
-                "b19282c5.feded"
-            ]
-        ]
-    },
-    {
-        "id": "9523f7b8.3a8bb8",
-        "type": "function",
-        "z": "b8390319.95ab",
-        "name": "Store Setting",
-        "func": "var movieSettings = global.get('movieSettings');\nvar settingTopic = msg.topic.split('-');\nmovieSettings[settingTopic[0]][settingTopic[1]] = msg.payload;\nreturn {'topic':'movieSettings', 'payload':movieSettings};",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 930,
-        "y": 340,
-        "wires": [
-            [
-                "df2b989a.995468"
-            ]
-        ]
-    },
-    {
-        "id": "1ef701d0.92ba2e",
-        "type": "ui_text_input",
-        "z": "b8390319.95ab",
-        "name": "w-value",
-        "label": "Width (64 to 1920)",
-        "group": "8e5e25d9.a83308",
-        "order": 5,
-        "width": "5",
-        "height": "1",
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "w-value",
-        "x": 680,
-        "y": 280,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "e89f24b4.2ca158",
-        "type": "ui_switch",
-        "z": "b8390319.95ab",
-        "name": "w-enabled",
-        "label": "",
-        "group": "8e5e25d9.a83308",
-        "order": 6,
-        "width": "1",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "w-enabled",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 690,
-        "y": 320,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "bdcb0fd5.871d7",
-        "type": "function",
-        "z": "b8390319.95ab",
-        "name": "Get w",
-        "func": "var command = 'w';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 490,
-        "y": 300,
-        "wires": [
-            [
-                "1ef701d0.92ba2e"
-            ],
-            [
-                "e89f24b4.2ca158"
-            ]
-        ]
-    },
-    {
-        "id": "25d87e63.2d7e02",
-        "type": "function",
-        "z": "b8390319.95ab",
-        "name": "Get h",
-        "func": "var command = 'h';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 490,
-        "y": 400,
-        "wires": [
-            [
-                "42010675.781e18"
-            ],
-            [
-                "9ecdf979.179d98"
-            ]
-        ]
-    },
-    {
-        "id": "9ecdf979.179d98",
-        "type": "ui_switch",
-        "z": "b8390319.95ab",
-        "name": "h-enabled",
-        "label": "",
-        "group": "8e5e25d9.a83308",
-        "order": 8,
-        "width": "1",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "h-enabled",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 680,
-        "y": 420,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "42010675.781e18",
-        "type": "ui_text_input",
-        "z": "b8390319.95ab",
-        "name": "h-value",
-        "label": "Height (64 to 1080)",
-        "group": "8e5e25d9.a83308",
-        "order": 7,
-        "width": "5",
-        "height": "1",
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "h-value",
-        "x": 680,
-        "y": 380,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "ba318dd0.f6751",
-        "type": "function",
-        "z": "b8390319.95ab",
-        "name": "Get fps",
-        "func": "var command = 'fps';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 500,
-        "y": 500,
-        "wires": [
-            [
-                "3e212378.a79e9c"
-            ],
-            [
-                "38d0b779.f9f5b8"
-            ]
-        ]
-    },
-    {
-        "id": "38d0b779.f9f5b8",
-        "type": "ui_switch",
-        "z": "b8390319.95ab",
-        "name": "fps-enabled",
-        "label": "",
-        "group": "8e5e25d9.a83308",
-        "order": 10,
-        "width": "1",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "fps-enabled",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 690,
-        "y": 520,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "3e212378.a79e9c",
-        "type": "ui_text_input",
-        "z": "b8390319.95ab",
-        "name": "fps-value",
-        "label": "Frames per Second (2 to 30)",
-        "group": "8e5e25d9.a83308",
-        "order": 9,
-        "width": "5",
-        "height": "1",
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "fps-value",
-        "x": 680,
-        "y": 480,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "d16dd76c.35aa58",
-        "type": "link in",
-        "z": "b8390319.95ab",
-        "name": "Receive Init",
-        "links": [
-            "d4bbd794.b49c98",
-            "82971844.2d8bd8"
-        ],
-        "x": 155,
-        "y": 180,
-        "wires": [
-            [
-                "11ab8a69.4c0c56"
-            ]
-        ]
-    },
-    {
-        "id": "df2b989a.995468",
-        "type": "file",
-        "z": "b8390319.95ab",
-        "name": "StoreMovieSettings",
-        "filename": "movieSettings.json",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "x": 1110,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "11ab8a69.4c0c56",
-        "type": "file in",
-        "z": "b8390319.95ab",
-        "name": "Read MovieSettings",
-        "filename": "movieSettings.json",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "x": 180,
-        "y": 260,
-        "wires": [
-            [
-                "c3f58957.54fcd8"
-            ]
-        ]
-    },
-    {
-        "id": "c3f58957.54fcd8",
-        "type": "json",
-        "z": "b8390319.95ab",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 90,
-        "y": 360,
-        "wires": [
-            [
-                "4f1bacbd.732804"
-            ]
-        ]
-    },
-    {
-        "id": "e6fb562e.dcca98",
-        "type": "ui_switch",
-        "z": "b8390319.95ab",
-        "name": "t-enabled",
-        "label": "",
-        "group": "8e5e25d9.a83308",
-        "order": 2,
-        "width": "1",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "t-enabled",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 680,
-        "y": 220,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "b19282c5.feded",
-        "type": "function",
-        "z": "b8390319.95ab",
-        "name": "Get t",
-        "func": "var command = 't';\nvar dt = Number(msg.payload[command].value);\ndt = dt / 1000;\nvar valueMsg = {'topic':command +'-value', 'payload':dt.toString()};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled, enabled:false};\nreturn [valueMsg, enabledMsg];",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 490,
-        "y": 200,
-        "wires": [
-            [
-                "cccebedc.48f28"
-            ],
-            [
-                "e6fb562e.dcca98"
-            ]
-        ]
-    },
-    {
-        "id": "eceb5a3c.dbb2d8",
-        "type": "function",
-        "z": "b8390319.95ab",
-        "name": "sec to msec",
-        "func": "var dt = Number(msg.payload);\ndt = dt * 1000;\nmsg.payload = dt.toString();\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 850,
-        "y": 180,
-        "wires": [
-            [
-                "9523f7b8.3a8bb8"
-            ]
-        ]
-    },
-    {
-        "id": "cccebedc.48f28",
-        "type": "ui_text_input",
-        "z": "b8390319.95ab",
-        "name": "t-value",
-        "label": "Length (sec) 1 or greater",
-        "group": "8e5e25d9.a83308",
-        "order": 1,
-        "width": "5",
-        "height": "1",
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "t-value",
-        "x": 670,
-        "y": 180,
-        "wires": [
-            [
-                "eceb5a3c.dbb2d8"
-            ]
-        ]
-    },
-    {
-        "id": "506c30da.4f4c9",
-        "type": "ui_button",
-        "z": "43d9f0b1.29583",
-        "name": "Movie",
-        "group": "e30ec498.e5ecc8",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "{{msg.topic}}",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 230,
-        "y": 160,
-        "wires": [
-            [
-                "e6f05d67.e395f"
-            ]
-        ]
-    },
-    {
-        "id": "9147d254.c717a",
-        "type": "file in",
-        "z": "43d9f0b1.29583",
-        "name": "Get movie counter",
-        "filename": "movieCounter.json",
-        "format": "lines",
-        "chunk": false,
-        "sendError": false,
-        "x": 710,
-        "y": 580,
-        "wires": [
-            [
-                "d66fff14.389fc"
-            ]
-        ]
-    },
-    {
-        "id": "d66fff14.389fc",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Store movie counter",
-        "func": "global.set('movieCounter', msg.payload);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 920,
-        "y": 580,
-        "wires": [
-            [
-                "9018b6ec.052388"
-            ]
-        ]
-    },
-    {
-        "id": "f25b68ed.28adb8",
-        "type": "link in",
-        "z": "43d9f0b1.29583",
-        "name": "Init",
-        "links": [
-            "d4bbd794.b49c98",
-            "82971844.2d8bd8"
-        ],
-        "x": 555,
-        "y": 580,
-        "wires": [
-            [
-                "9147d254.c717a"
-            ]
-        ]
-    },
-    {
-        "id": "9018b6ec.052388",
-        "type": "ui_text",
-        "z": "43d9f0b1.29583",
-        "group": "e30ec498.e5ecc8",
-        "order": 2,
-        "width": "2",
-        "height": "1",
-        "name": "Movie Counter",
-        "label": "Movie",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 1180,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "a6fce1f8.a3e2b",
-        "type": "file",
-        "z": "43d9f0b1.29583",
-        "name": "Write movieCounter",
-        "filename": "movieCounter.json",
-        "appendNewline": false,
-        "createDir": false,
-        "overwriteFile": "true",
-        "x": 1190,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e6f05d67.e395f",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "compile settings",
-        "func": "var movieRunning = flow.get('movieRunning');\nif (movieRunning)\n{\n    return [null, null];   \n}\nelse\n{\n    flow.set('movieRunning',!movieRunning);\n    var cameraSettings = global.get('cameraSettings');\n    var movieSettings = global.get('movieSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in movieSettings)\n    {\n        if (movieSettings[key].enabled && key != 'd')\n        {\n            commandString = commandString + ' -'+ key + ' ' + movieSettings[key].value;\n        }\n    }\n    commandString = commandString + ' -o /media/pi/yggCamData/images/latest.h264';\n    flow.set('commandLineArgs',commandString);\n    return [{'topic':'Running', 'payload':''},{'topic':'', 'payload':''}];    \n}\n\n",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 420,
-        "y": 160,
-        "wires": [
-            [
-                "d89fec47.942aa"
-            ],
-            [
-                "a8c5926f.e7519"
-            ]
-        ]
-    },
-    {
-        "id": "852288.73ed9d78",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Incr Movie",
-        "func": "var movieCounter = global.get('movieCounter');\nvar counter = Number(movieCounter);\nif (msg.payload.code == 0) counter = counter + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nmovieCounter = prefix + counter.toString();\nglobal.set('movieCounter', movieCounter);\nvar currentCount = {'topic':'movieCounter','payload':movieCounter};\nmsg.payload = '/media/pi/yggCamData/images/movies/movie' + movieCounter + '.mp4';\nreturn [msg, currentCount];",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 1130,
-        "y": 320,
-        "wires": [
-            [
-                "d262569c.30ed78"
-            ],
-            [
-                "a6fce1f8.a3e2b",
-                "9018b6ec.052388"
-            ]
-        ]
-    },
-    {
-        "id": "d262569c.30ed78",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "cp /media/pi/yggCamData/images/latest.mp4 ",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Copy to movies",
-        "x": 1340,
-        "y": 320,
-        "wires": [
-            [],
-            [],
-            [
-                "1153b8a.9c9c247"
-            ]
-        ]
-    },
-    {
-        "id": "5c10248.1baf1dc",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "raspivid ",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Run Camera",
-        "x": 1090,
-        "y": 120,
-        "wires": [
-            [],
-            [],
-            [
-                "890efdc4.6b12c"
-            ]
-        ]
-    },
-    {
-        "id": "b464c768.661858",
-        "type": "link in",
-        "z": "43d9f0b1.29583",
-        "name": "Init",
-        "links": [
-            "d4bbd794.b49c98",
-            "82971844.2d8bd8"
-        ],
-        "x": 260,
-        "y": 520,
-        "wires": [
-            [
-                "e0eca58f.26bd18"
-            ]
-        ]
-    },
-    {
-        "id": "e0eca58f.26bd18",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Init Movie State",
-        "func": "flow.set('movieRunning',false);\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 400,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f3b4d728.7c9118",
-        "type": "ui_button",
-        "z": "43d9f0b1.29583",
-        "name": "Export",
-        "group": "e30ec498.e5ecc8",
-        "order": 4,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Export",
-        "color": "",
-        "bgcolor": "magenta",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 270,
-        "y": 960,
-        "wires": [
-            [
-                "f0386a48.95cc88",
-                "451d79ba.484228"
-            ]
-        ]
-    },
-    {
-        "id": "58d956c.30baea8",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "zip -r ",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Zip Movies",
-        "x": 910,
-        "y": 940,
-        "wires": [
-            [],
-            [],
-            [
-                "dbf9dec2.7de97"
-            ]
-        ]
-    },
-    {
-        "id": "451d79ba.484228",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Disable",
-        "func": "msg.enabled = false;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 660,
-        "y": 1080,
-        "wires": [
-            [
-                "53637290.61b07c"
-            ]
-        ]
-    },
-    {
-        "id": "dbf9dec2.7de97",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Enable",
-        "func": "msg.enabled = true;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1080,
-        "y": 1000,
-        "wires": [
-            [
-                "53637290.61b07c"
-            ]
-        ]
-    },
-    {
-        "id": "f0386a48.95cc88",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "ls  /media/pi",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "",
-        "x": 470,
-        "y": 960,
-        "wires": [
-            [
-                "959ee6f0.f2c5c8"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "959ee6f0.f2c5c8",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Find USB Stick",
-        "func": "var split = msg.payload.split('\\n');\nvar usbStick = '';\nfor (var ii = 0; ii < split.length; ++ii)\n{\n    if (split[ii] != '')\n        if(split[ii] != '/media/pi:')\n            if(split[ii] != 'yggCamData')\n               usbStick = '/media/pi/' + split[ii] + '/movies.zip'; \n}\nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' /media/pi/yggCamData/images/movies'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 660,
-        "y": 940,
-        "wires": [
-            [
-                "58d956c.30baea8"
-            ],
-            [
-                "c632f5a.be7be08"
-            ]
-        ]
-    },
-    {
-        "id": "c632f5a.be7be08",
-        "type": "ui_toast",
-        "z": "43d9f0b1.29583",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "topic": "Missing USB Stick",
-        "name": "Missing USB Stick",
-        "x": 870,
-        "y": 1000,
-        "wires": [
-            [
-                "dbf9dec2.7de97"
-            ]
-        ]
-    },
-    {
-        "id": "53637290.61b07c",
-        "type": "link out",
-        "z": "43d9f0b1.29583",
-        "name": "Enable Export Button",
-        "links": [
-            "b45ed556.59dbb8"
-        ],
-        "x": 1195,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "b45ed556.59dbb8",
-        "type": "link in",
-        "z": "43d9f0b1.29583",
-        "name": "Export Button Enable",
-        "links": [
-            "53637290.61b07c"
-        ],
-        "x": 235,
-        "y": 1040,
-        "wires": [
-            [
-                "f3b4d728.7c9118"
-            ]
-        ]
-    },
-    {
-        "id": "8e9f6856.5a1388",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "rm /media/pi/yggCamData/images/movies/*.mp4",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Clear movie directory",
-        "x": 580,
-        "y": 700,
-        "wires": [
-            [],
-            [],
-            [
-                "4e190f54.83091",
-                "829a8c7c.44a54"
-            ]
-        ]
-    },
-    {
-        "id": "4e190f54.83091",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Reset movie counter",
-        "func": "global.set('movieCounter', '0000');\nreturn {'topic':'movieCounter','payload':'0000'};",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 840,
-        "y": 700,
-        "wires": [
-            [
-                "a6fce1f8.a3e2b",
-                "9018b6ec.052388"
-            ]
-        ]
-    },
-    {
-        "id": "b1dc9c5f.79328",
-        "type": "ui_button",
-        "z": "43d9f0b1.29583",
-        "name": "Erase",
-        "group": "e30ec498.e5ecc8",
-        "order": 5,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Erase",
-        "color": "",
-        "bgcolor": "red",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 330,
-        "y": 700,
-        "wires": [
-            [
-                "8e9f6856.5a1388",
-                "7217561e.14d968"
-            ]
-        ]
-    },
-    {
-        "id": "7217561e.14d968",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Disable",
-        "func": "msg.enabled = false;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 800,
-        "y": 800,
-        "wires": [
-            [
-                "b65faec3.ce7b9"
-            ]
-        ]
-    },
-    {
-        "id": "829a8c7c.44a54",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Enable",
-        "func": "msg.enabled = true;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 800,
-        "y": 760,
-        "wires": [
-            [
-                "b65faec3.ce7b9"
-            ]
-        ]
-    },
-    {
-        "id": "b65faec3.ce7b9",
-        "type": "link out",
-        "z": "43d9f0b1.29583",
-        "name": "Enable Erase Button",
-        "links": [
-            "c9b9ddd5.86f05"
-        ],
-        "x": 915,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "c9b9ddd5.86f05",
-        "type": "link in",
-        "z": "43d9f0b1.29583",
-        "name": "Erase Button Enable",
-        "links": [
-            "b65faec3.ce7b9"
-        ],
-        "x": 295,
-        "y": 760,
-        "wires": [
-            [
-                "b1dc9c5f.79328"
-            ]
-        ]
-    },
-    {
-        "id": "ef0d76b0.b5c078",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Init button",
-        "func": "return {'topic':'Movie', 'payload':''};",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 170,
-        "y": 220,
-        "wires": [
-            [
-                "506c30da.4f4c9"
-            ]
-        ]
-    },
-    {
-        "id": "1da9c207.8c0e3e",
-        "type": "link in",
-        "z": "43d9f0b1.29583",
-        "name": "Init",
-        "links": [
-            "d4bbd794.b49c98",
-            "82971844.2d8bd8"
-        ],
-        "x": 45,
-        "y": 220,
-        "wires": [
-            [
-                "ef0d76b0.b5c078"
-            ]
-        ]
-    },
-    {
-        "id": "890efdc4.6b12c",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "MP4Box -add /media/pi/yggCamData/images/latest.h264 /media/pi/yggCamData/images/latest.mp4",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Convert Movie",
-        "x": 720,
-        "y": 200,
-        "wires": [
-            [],
-            [],
-            [
-                "1575a68e.2644b9"
-            ]
-        ]
-    },
-    {
-        "id": "1575a68e.2644b9",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "rm /media/pi/yggCamData/images/latest.h264 ",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Remove Raw Movie",
-        "x": 860,
-        "y": 280,
-        "wires": [
-            [],
-            [],
-            [
-                "852288.73ed9d78"
-            ]
-        ]
-    },
-    {
-        "id": "d89fec47.942aa",
-        "type": "link out",
-        "z": "43d9f0b1.29583",
-        "name": "Change Movie Button",
-        "links": [
-            "b7a7c30e.60cb1"
-        ],
-        "x": 555,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "b7a7c30e.60cb1",
-        "type": "link in",
-        "z": "43d9f0b1.29583",
-        "name": "",
-        "links": [
-            "20f1c747.8c87d8",
-            "d89fec47.942aa"
-        ],
-        "x": 100,
-        "y": 100,
-        "wires": [
-            [
-                "506c30da.4f4c9"
-            ]
-        ]
-    },
-    {
-        "id": "1153b8a.9c9c247",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Change Movie button",
-        "func": "flow.set('movieRunning',false);\nmsg.topic = 'Movie';\nmsg.payload = '';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1380,
-        "y": 420,
-        "wires": [
-            [
-                "20f1c747.8c87d8",
-                "c7c03f4d.68362"
-            ]
-        ]
-    },
-    {
-        "id": "20f1c747.8c87d8",
-        "type": "link out",
-        "z": "43d9f0b1.29583",
-        "name": "Movie finished",
-        "links": [
-            "b7a7c30e.60cb1"
-        ],
-        "x": 1515,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "c7c03f4d.68362",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Add Timestamp",
-        "func": "var timestamp = new Date();\nvar movieName = '/latest.mp4?time=' + timestamp.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'movie':movieName,'date':timestamp.toLocaleString()}};\nreturn newMsg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1440,
-        "y": 500,
-        "wires": [
-            [
-                "2b292d8c.82fa92"
-            ]
-        ]
-    },
-    {
-        "id": "2b292d8c.82fa92",
-        "type": "ui_template",
-        "z": "43d9f0b1.29583",
-        "group": "e30ec498.e5ecc8",
-        "name": "Play Movie",
-        "order": 3,
-        "width": "3",
-        "height": "1",
-        "format": "<div ng-style=\"{color:'black', background:'lime', height:'100%', width:'100%'}\" align='center'>\n    <table>\n            <tr align=\"center\">\n                <td align=\"center\">\n                     <a href='{{msg.payload.movie}}' >Play Movie</a>\n                </td>\n            </tr>\n    </table>\n</div>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1490,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a8c5926f.e7519",
-        "type": "exec",
-        "z": "43d9f0b1.29583",
-        "command": "rm /media/pi/yggCamData/images/*.mp4 /media/pi/yggCamData/images/*.h264 ",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Remove Raw Movie",
-        "x": 700,
-        "y": 100,
-        "wires": [
-            [],
-            [],
-            [
-                "53efbbd2.4a81a4"
-            ]
-        ]
-    },
-    {
-        "id": "53efbbd2.4a81a4",
-        "type": "function",
-        "z": "43d9f0b1.29583",
-        "name": "Get Settings",
-        "func": "msg.payload = flow.get('commandLineArgs');\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 920,
-        "y": 120,
-        "wires": [
-            [
-                "5c10248.1baf1dc"
             ]
         ]
     },
@@ -4993,7 +3902,8 @@
         "z": "465cfd27.107674",
         "name": "StillImageFinished",
         "links": [
-            "f319a718.c09eb8"
+            "f319a718.c09eb8",
+            "c2fef6a9.dc3db8"
         ],
         "x": 1255,
         "y": 60,
@@ -5007,7 +3917,8 @@
         "links": [
             "8ab40235.9f40c",
             "dd215dc9.e71ff",
-            "e8d4d65e.9e0298"
+            "e8d4d65e.9e0298",
+            "91ba0d1b.35787"
         ],
         "x": 55,
         "y": 380,
@@ -5026,7 +3937,8 @@
         "links": [
             "59f6d3aa.758e7c",
             "d90aa84b.972ee8",
-            "f319a718.c09eb8"
+            "f319a718.c09eb8",
+            "fba5f8c8.ccba78"
         ],
         "x": 615,
         "y": 260,
@@ -5039,7 +3951,9 @@
         "name": "",
         "links": [
             "8ab40235.9f40c",
-            "e8d4d65e.9e0298"
+            "e8d4d65e.9e0298",
+            "1654617b.3d347f",
+            "716dcb4c.1cffc4"
         ],
         "x": 855,
         "y": 140,
@@ -5057,7 +3971,9 @@
         "links": [
             "9dfcc25a.687d4",
             "d90aa84b.972ee8",
-            "f319a718.c09eb8"
+            "f319a718.c09eb8",
+            "fba5f8c8.ccba78",
+            "48f2ee46.916a5"
         ],
         "x": 835,
         "y": 640,
@@ -5069,7 +3985,8 @@
         "z": "465cfd27.107674",
         "name": "",
         "links": [
-            "e8d4d65e.9e0298"
+            "e8d4d65e.9e0298",
+            "716dcb4c.1cffc4"
         ],
         "x": 855,
         "y": 100,
@@ -5584,7 +4501,8 @@
         "name": "StarTrail PID to Still",
         "links": [
             "48aa4cf4.e4d044",
-            "f2505e1a.73902"
+            "f2505e1a.73902",
+            "e7b8a2b.93b036"
         ],
         "x": 395,
         "y": 160,
@@ -5609,10 +4527,11 @@
         "z": "4c830eaa.25d9d",
         "name": "Disable Still button",
         "links": [
-            "f2505e1a.73902"
+            "f2505e1a.73902",
+            "e7b8a2b.93b036"
         ],
-        "x": 1295,
-        "y": 20,
+        "x": 1535,
+        "y": 60,
         "wires": []
     },
     {
@@ -5623,7 +4542,7 @@
         "func": "if (msg.topic == 'Abort') msg.enabled = false;\nif (msg.topic == 'Timelapse') msg.enabled = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1170,
+        "x": 1370,
         "y": 20,
         "wires": [
             [
@@ -5699,6 +4618,1352 @@
         ],
         "x": 395,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "31deeeef.6c8eb2",
+        "type": "ui_switch",
+        "z": "22b6830.477b37e",
+        "name": "t-enabled",
+        "label": "",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "t-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 740,
+        "y": 80,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "15fad9ca.cf1a86",
+        "type": "ui_text_input",
+        "z": "22b6830.477b37e",
+        "name": "t-value",
+        "label": "Delay Time (sec) 1 or greater",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 1,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "t-value",
+        "x": 730,
+        "y": 40,
+        "wires": [
+            [
+                "4c671223.534fac"
+            ]
+        ]
+    },
+    {
+        "id": "12f58e6e.906122",
+        "type": "function",
+        "z": "22b6830.477b37e",
+        "name": "InitMovieSettings",
+        "func": "msg.topic = 'movieSettings';\nglobal.set(msg.topic,msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 200,
+        "wires": [
+            [
+                "f1f044fa.f46fd8",
+                "1a14ba89.3c0195",
+                "177ae711.c4e8f9",
+                "eece4dd3.93659"
+            ]
+        ]
+    },
+    {
+        "id": "eece4dd3.93659",
+        "type": "function",
+        "z": "22b6830.477b37e",
+        "name": "Get t",
+        "func": "var command = 't';\nvar dt = Number(msg.payload[command].value);\ndt = dt / 1000;\nvar valueMsg = {'topic':command +'-value', 'payload':dt.toString()};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled, enabled:false};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 550,
+        "y": 60,
+        "wires": [
+            [
+                "15fad9ca.cf1a86"
+            ],
+            [
+                "31deeeef.6c8eb2"
+            ]
+        ]
+    },
+    {
+        "id": "b0116098.a5a8a",
+        "type": "function",
+        "z": "22b6830.477b37e",
+        "name": "Store Setting",
+        "func": "var movieSettings = global.get('movieSettings');\nvar settingTopic = msg.topic.split('-');\nmovieSettings[settingTopic[0]][settingTopic[1]] = msg.payload;\nreturn {'topic':'movieSettings', 'payload':movieSettings};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 200,
+        "wires": [
+            [
+                "9ca3da43.c585b8"
+            ]
+        ]
+    },
+    {
+        "id": "234ce8fc.0488f8",
+        "type": "ui_text_input",
+        "z": "22b6830.477b37e",
+        "name": "w-value",
+        "label": "Width (100 to 2592)",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 3,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "w-value",
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "afcfda79.746798",
+        "type": "ui_switch",
+        "z": "22b6830.477b37e",
+        "name": "w-enabled",
+        "label": "",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "w-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 750,
+        "y": 180,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "f1f044fa.f46fd8",
+        "type": "function",
+        "z": "22b6830.477b37e",
+        "name": "Get w",
+        "func": "var command = 'w';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 550,
+        "y": 160,
+        "wires": [
+            [
+                "234ce8fc.0488f8"
+            ],
+            [
+                "afcfda79.746798"
+            ]
+        ]
+    },
+    {
+        "id": "1a14ba89.3c0195",
+        "type": "function",
+        "z": "22b6830.477b37e",
+        "name": "Get h",
+        "func": "var command = 'h';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 550,
+        "y": 260,
+        "wires": [
+            [
+                "4c101f0a.b47e7"
+            ],
+            [
+                "d3048671.ed1758"
+            ]
+        ]
+    },
+    {
+        "id": "d3048671.ed1758",
+        "type": "ui_switch",
+        "z": "22b6830.477b37e",
+        "name": "h-enabled",
+        "label": "",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "h-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 740,
+        "y": 280,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "4c101f0a.b47e7",
+        "type": "ui_text_input",
+        "z": "22b6830.477b37e",
+        "name": "h-value",
+        "label": "Height (100 to 1944)",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "h-value",
+        "x": 740,
+        "y": 240,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "177ae711.c4e8f9",
+        "type": "function",
+        "z": "22b6830.477b37e",
+        "name": "Get q",
+        "func": "var command = 'q';\nvar valueMsg = {'topic':command +'-value', 'payload':msg.payload[command].value};\nvar enabledMsg = {'topic':command +'-enabled', 'payload':msg.payload[command].enabled};\nreturn [valueMsg, enabledMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "b1efb294.f30a6"
+            ],
+            [
+                "ecc7556f.6e3a28"
+            ]
+        ]
+    },
+    {
+        "id": "ecc7556f.6e3a28",
+        "type": "ui_switch",
+        "z": "22b6830.477b37e",
+        "name": "q-enabled",
+        "label": "",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 8,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "q-enabled",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 740,
+        "y": 380,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "b1efb294.f30a6",
+        "type": "ui_text_input",
+        "z": "22b6830.477b37e",
+        "name": "q-value",
+        "label": "Quality (0 to 100)",
+        "tooltip": "",
+        "group": "12fa5cac.ba65b3",
+        "order": 7,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "q-value",
+        "x": 740,
+        "y": 340,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "4c671223.534fac",
+        "type": "function",
+        "z": "22b6830.477b37e",
+        "name": "sec to msec",
+        "func": "var dt = Number(msg.payload);\ndt = dt * 1000;\nmsg.payload = dt.toString();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 40,
+        "wires": [
+            [
+                "b0116098.a5a8a"
+            ]
+        ]
+    },
+    {
+        "id": "9ca3da43.c585b8",
+        "type": "file",
+        "z": "22b6830.477b37e",
+        "name": "StoreMovieSettings",
+        "filename": "movieSettings.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "x": 1170,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88378cb.a1a937",
+        "type": "file in",
+        "z": "22b6830.477b37e",
+        "name": "Read Movie Settings",
+        "filename": "movieSettings.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 240,
+        "y": 120,
+        "wires": [
+            [
+                "6e5ee3f5.8db7ec"
+            ]
+        ]
+    },
+    {
+        "id": "6e5ee3f5.8db7ec",
+        "type": "json",
+        "z": "22b6830.477b37e",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "12f58e6e.906122"
+            ]
+        ]
+    },
+    {
+        "id": "4998d12.b4f6b3",
+        "type": "exec",
+        "z": "aecc47c0.144c78",
+        "command": "raspivid",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Run Camera",
+        "x": 610,
+        "y": 40,
+        "wires": [
+            [],
+            [],
+            [
+                "9dbd64ac.5e8118"
+            ]
+        ]
+    },
+    {
+        "id": "4bbaedc7.729d64",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "getMovieCounter",
+        "func": "msg.payload = global.get('movieCounter');\nmsg.topic = 'displayValue';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1230,
+        "y": 80,
+        "wires": [
+            [
+                "270eb2fc.f2d47e"
+            ]
+        ]
+    },
+    {
+        "id": "b779abf0.fe5f98",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "compile settings",
+        "func": "var abortMovieMsg = null;\nvar runMovieMsg = null;\n\nif (!flow.get('movieRunning'))\n{\n    var cameraSettings = global.get('cameraSettings');\n    var movieSettings = global.get('movieSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in movieSettings)\n    {\n        if (movieSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + movieSettings[key].value;\n    }\n    commandString = commandString + ' -o ' + global.get('imageStorageLocation') + '/latest.h264';\n    runMovieMsg = {topic:'Abort', payload:commandString };\n    flow.set('movieRunning',true);\n}\nelse\n{\n    abortMovieMsg  = {topic:'Movie', payload:\"\" };\n    flow.set('movieRunning',false);\n}\n//node.warn('raspistill ' + msg.payload);\n\nreturn [runMovieMsg, abortMovieMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 320,
+        "y": 60,
+        "wires": [
+            [
+                "4998d12.b4f6b3",
+                "6941ddd5.309554"
+            ],
+            [
+                "fddce04c.79273",
+                "6941ddd5.309554"
+            ]
+        ]
+    },
+    {
+        "id": "71c3d31a.9012ec",
+        "type": "exec",
+        "z": "aecc47c0.144c78",
+        "command": "cp ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Copy to movies",
+        "x": 1040,
+        "y": 60,
+        "wires": [
+            [],
+            [],
+            [
+                "4bbaedc7.729d64"
+            ]
+        ]
+    },
+    {
+        "id": "9dbd64ac.5e8118",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Incr Movie",
+        "func": "var movieCounter = global.get('movieCounter');\nvar counter = Number(movieCounter) + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nmovieCounter = prefix + counter.toString();\nglobal.set('movieCounter', movieCounter);\nvar currentCount = {'topic':'movieCounter','payload':movieCounter};\nmsg.payload = global.get('imageStorageLocation') + '/latest.h264'  +  ' '  + global.get('imageStorageLocation') + '/movies/mov' + movieCounter + '.h264';\nreturn [msg, currentCount];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 850,
+        "y": 80,
+        "wires": [
+            [
+                "71c3d31a.9012ec"
+            ],
+            [
+                "d514c5e2.7dea48",
+                "e0aaf750.2639f8"
+            ]
+        ]
+    },
+    {
+        "id": "d514c5e2.7dea48",
+        "type": "ui_text",
+        "z": "aecc47c0.144c78",
+        "group": "4f066c77.1406c4",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "name": "Movie Counter",
+        "label": "Last Movie",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1040,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e0aaf750.2639f8",
+        "type": "file",
+        "z": "aecc47c0.144c78",
+        "name": "Write movieCounter",
+        "filename": "movieCounter.json",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "x": 1050,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c79ee14.531292",
+        "type": "ui_button",
+        "z": "aecc47c0.144c78",
+        "name": "Movie",
+        "group": "4f066c77.1406c4",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "{{msg.topic}}",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#547792",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 170,
+        "y": 60,
+        "wires": [
+            [
+                "b779abf0.fe5f98"
+            ]
+        ]
+    },
+    {
+        "id": "60cb9d0d.4048a4",
+        "type": "ui_template",
+        "z": "aecc47c0.144c78",
+        "group": "8395db7d.f47d48",
+        "name": "Image Display",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "format": "<script type=\"text/javascript\">\n//var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);\nif (!!navigator.platform && /iPhone/.test(navigator.platform))\n{\n    $(\"#image\").attr(\"height\", \"260\");\n    $(\"#image\").attr(\"width\",  \"347\");\n    \n}\n</script>\n<div>\n    <table>\n        <tbody>\n            <tr align=\"center\">\n                <td align=\"center\">\n                    <img id=\"image\" src='{{msg.payload.image}}' width=\"100%\" >\n                </td>\n            </tr>\n            <tr align=\"center\">\n                <td id=\"imageDate\" align=\"center\">\n                   {{msg.payload.date}}\n                </td>\n            </tr>        \n        </tbody>\n    </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1060,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a38ea6d2.f9c178",
+        "type": "file in",
+        "z": "aecc47c0.144c78",
+        "name": "Get movie counter",
+        "filename": "movieCounter.json",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "e3c86bca.62adb8"
+            ]
+        ]
+    },
+    {
+        "id": "e3c86bca.62adb8",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Store Movie counter",
+        "func": "global.set('movieCounter', msg.payload);\nmsg.topic = 'displayValue';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 280,
+        "wires": [
+            [
+                "fd81ac6a.221df"
+            ]
+        ]
+    },
+    {
+        "id": "949273aa.14aae",
+        "type": "exec",
+        "z": "aecc47c0.144c78",
+        "command": "rm ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Clear movies directory",
+        "x": 580,
+        "y": 660,
+        "wires": [
+            [],
+            [],
+            [
+                "1ed132d3.f7513d",
+                "f01c4cd2.7235e"
+            ]
+        ]
+    },
+    {
+        "id": "1ed132d3.f7513d",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Reset Movie counter",
+        "func": "global.set('movieCounter', '0000');\nreturn {'topic':'displayValue','payload':'0000'};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 660,
+        "wires": [
+            [
+                "eaff315b.394e4"
+            ]
+        ]
+    },
+    {
+        "id": "d1043ab6.bd7998",
+        "type": "ui_button",
+        "z": "aecc47c0.144c78",
+        "name": "Export",
+        "group": "4f066c77.1406c4",
+        "order": 7,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Export",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#547792",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 230,
+        "y": 860,
+        "wires": [
+            [
+                "d308d1bd.2964a",
+                "ddbb2a28.24c8f8"
+            ]
+        ]
+    },
+    {
+        "id": "3dbee9e5.994dc6",
+        "type": "ui_button",
+        "z": "aecc47c0.144c78",
+        "name": "Erase",
+        "group": "4f066c77.1406c4",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Erase",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#547792",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 230,
+        "y": 660,
+        "wires": [
+            [
+                "a493c090.ae376",
+                "c59fd911.d5d418"
+            ]
+        ]
+    },
+    {
+        "id": "a493c090.ae376",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Disable",
+        "func": "msg.enabled = false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 760,
+        "y": 740,
+        "wires": [
+            [
+                "86eead2f.190f4"
+            ]
+        ]
+    },
+    {
+        "id": "f01c4cd2.7235e",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Enable",
+        "func": "msg.enabled = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 760,
+        "y": 700,
+        "wires": [
+            [
+                "86eead2f.190f4"
+            ]
+        ]
+    },
+    {
+        "id": "fd6aad53.ccac2",
+        "type": "exec",
+        "z": "aecc47c0.144c78",
+        "command": "sudo zip -r ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Zip Stills",
+        "x": 960,
+        "y": 840,
+        "wires": [
+            [],
+            [],
+            [
+                "7153f6be.f1e6a8"
+            ]
+        ]
+    },
+    {
+        "id": "d308d1bd.2964a",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Disable",
+        "func": "msg.enabled = false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7153f6be.f1e6a8",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Enable",
+        "func": "msg.enabled = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1140,
+        "y": 860,
+        "wires": [
+            [
+                "fd193c87.58c72"
+            ]
+        ]
+    },
+    {
+        "id": "48fcafd6.06b71",
+        "type": "exec",
+        "z": "aecc47c0.144c78",
+        "command": "ls  ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "usbDrive Dir",
+        "x": 590,
+        "y": 860,
+        "wires": [
+            [
+                "9cc37f4b.3bb24"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9cc37f4b.3bb24",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Find USB Stick",
+        "func": "var split = msg.payload.split('\\n');\n//node.warn(split);\nvar usbStick = '';\nif (split[0] == global.get('usbDriveData'))\n    usbStick = global.get('usbDrive') + '/' + global.get('usbDriveData') + '/movies.zip'; \nvar newMsg1 = null;\nvar newMsg2 = null;\n\nif (usbStick != '') \n{\n    newMsg1 = {'topic':'usbstick','payload':usbStick + ' ' + global.get('imageStorageLocation') + '/movies'}\n} \nelse\n{\n    newMsg2 = {'topic':'usbstick','payload':'No USB Stick found!'}\n\n}\nreturn [newMsg1,newMsg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 780,
+        "y": 860,
+        "wires": [
+            [
+                "fd6aad53.ccac2"
+            ],
+            [
+                "1d4d5f93.c87d"
+            ]
+        ]
+    },
+    {
+        "id": "1d4d5f93.c87d",
+        "type": "ui_toast",
+        "z": "aecc47c0.144c78",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "Missing USB Stick",
+        "name": "Missing USB Stick",
+        "x": 990,
+        "y": 920,
+        "wires": [
+            [
+                "7153f6be.f1e6a8"
+            ]
+        ]
+    },
+    {
+        "id": "6e704ee0.09af9",
+        "type": "ui_text_input",
+        "z": "aecc47c0.144c78",
+        "name": "displayValue",
+        "label": "",
+        "tooltip": "",
+        "group": "4f066c77.1406c4",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "mode": "text",
+        "delay": 300,
+        "topic": "displayValue",
+        "x": 270,
+        "y": 400,
+        "wires": [
+            [
+                "9142f304.b5699"
+            ]
+        ]
+    },
+    {
+        "id": "2736a27.052d95e",
+        "type": "ui_button",
+        "z": "aecc47c0.144c78",
+        "name": "Plus Button",
+        "group": "4f066c77.1406c4",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "+",
+        "tooltip": "",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "addOne",
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "9142f304.b5699"
+            ]
+        ]
+    },
+    {
+        "id": "489ded2.110e714",
+        "type": "ui_button",
+        "z": "aecc47c0.144c78",
+        "name": "Minus Button",
+        "group": "4f066c77.1406c4",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "-",
+        "tooltip": "",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "-1",
+        "payloadType": "num",
+        "topic": "subtractOne",
+        "x": 270,
+        "y": 460,
+        "wires": [
+            [
+                "9142f304.b5699"
+            ]
+        ]
+    },
+    {
+        "id": "17e87223.0da2de",
+        "type": "ui_text",
+        "z": "aecc47c0.144c78",
+        "group": "4f066c77.1406c4",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "name": "Display Label",
+        "label": "Display",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 280,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "9142f304.b5699",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Get Display Value",
+        "func": "var movieCounter = Number(global.get('movieCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  movieCounter) counter = movieCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = global.get('imageStorageLocation');\nvar displayFileName  = '/movie/mov' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 490,
+        "y": 400,
+        "wires": [
+            [
+                "ffb225d8.d25808"
+            ],
+            [
+                "8299da08.e396d8"
+            ]
+        ]
+    },
+    {
+        "id": "8299da08.e396d8",
+        "type": "delay",
+        "z": "aecc47c0.144c78",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "300",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 690,
+        "y": 460,
+        "wires": [
+            [
+                "6e704ee0.09af9"
+            ]
+        ]
+    },
+    {
+        "id": "ffb225d8.d25808",
+        "type": "exec",
+        "z": "aecc47c0.144c78",
+        "command": "date -r ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Get Date",
+        "x": 700,
+        "y": 380,
+        "wires": [
+            [
+                "69830629.e80b98"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "69830629.e80b98",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Add Timestamp",
+        "func": "var timestampNow = new Date();\nvar fileName = flow.get('displayFileName');\nvar fileTimeStamp = msg.payload.split('\\n')[0];\nvar imageName = fileName+ '?time=' + timestampNow.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':fileTimeStamp}};\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 380,
+        "wires": [
+            [
+                "60cb9d0d.4048a4"
+            ]
+        ]
+    },
+    {
+        "id": "c59fd911.d5d418",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "movies",
+        "func": "msg.payload = global.get('imageStorageLocation') + '/movies/*.h264';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 660,
+        "wires": [
+            [
+                "949273aa.14aae"
+            ]
+        ]
+    },
+    {
+        "id": "c25d5f2.45f7fa",
+        "type": "comment",
+        "z": "aecc47c0.144c78",
+        "name": "Get the USB drive to automount",
+        "info": "https://www.raspberrypi.org/forums/viewtopic.php?t=205016#p1271455",
+        "x": 270,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "ddbb2a28.24c8f8",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "get usbDrive",
+        "func": "msg.payload = global.get('usbDrive');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 860,
+        "wires": [
+            [
+                "48fcafd6.06b71"
+            ]
+        ]
+    },
+    {
+        "id": "8e85607d.ea3f",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Get Movie Counter",
+        "links": [
+            "d4bbd794.b49c98"
+        ],
+        "x": 255,
+        "y": 280,
+        "wires": [
+            [
+                "a38ea6d2.f9c178"
+            ]
+        ]
+    },
+    {
+        "id": "6555d9b1.578458",
+        "type": "link in",
+        "z": "22b6830.477b37e",
+        "name": "Read Movie Settings",
+        "links": [
+            "d4bbd794.b49c98"
+        ],
+        "x": 95,
+        "y": 120,
+        "wires": [
+            [
+                "88378cb.a1a937"
+            ]
+        ]
+    },
+    {
+        "id": "fd81ac6a.221df",
+        "type": "link out",
+        "z": "aecc47c0.144c78",
+        "name": "Store Movie Counter",
+        "links": [
+            "790aad13.63e094",
+            "ba7afeb.68a8d"
+        ],
+        "x": 755,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a9934f68.87571",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Write Movie Counter",
+        "links": [
+            "eaff315b.394e4"
+        ],
+        "x": 875,
+        "y": 120,
+        "wires": [
+            [
+                "e0aaf750.2639f8"
+            ]
+        ]
+    },
+    {
+        "id": "ba7afeb.68a8d",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Display Movie Counter",
+        "links": [
+            "fd81ac6a.221df",
+            "eaff315b.394e4"
+        ],
+        "x": 875,
+        "y": 160,
+        "wires": [
+            [
+                "d514c5e2.7dea48"
+            ]
+        ]
+    },
+    {
+        "id": "790aad13.63e094",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Movie Counter Display Value",
+        "links": [
+            "eaff315b.394e4",
+            "fd81ac6a.221df",
+            "270eb2fc.f2d47e"
+        ],
+        "x": 135,
+        "y": 400,
+        "wires": [
+            [
+                "6e704ee0.09af9"
+            ]
+        ]
+    },
+    {
+        "id": "eaff315b.394e4",
+        "type": "link out",
+        "z": "aecc47c0.144c78",
+        "name": "Reset Movie Counter",
+        "links": [
+            "790aad13.63e094",
+            "a9934f68.87571",
+            "ba7afeb.68a8d"
+        ],
+        "x": 935,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "b9f6c776.cbcbb8",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Movie Button Enable",
+        "links": [
+            "6941ddd5.309554",
+            "405c89cb.a655d8"
+        ],
+        "x": 75,
+        "y": 60,
+        "wires": [
+            [
+                "3c79ee14.531292"
+            ]
+        ]
+    },
+    {
+        "id": "6941ddd5.309554",
+        "type": "link out",
+        "z": "aecc47c0.144c78",
+        "name": "Abort Movie function",
+        "links": [
+            "b9f6c776.cbcbb8"
+        ],
+        "x": 435,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "270eb2fc.f2d47e",
+        "type": "link out",
+        "z": "aecc47c0.144c78",
+        "name": "Get Movie Counter Function",
+        "links": [
+            "790aad13.63e094"
+        ],
+        "x": 1355,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6e1e56c1.71a428",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Erase Button Enable",
+        "links": [
+            "86eead2f.190f4"
+        ],
+        "x": 135,
+        "y": 660,
+        "wires": [
+            [
+                "3dbee9e5.994dc6"
+            ]
+        ]
+    },
+    {
+        "id": "86eead2f.190f4",
+        "type": "link out",
+        "z": "aecc47c0.144c78",
+        "name": "Enable Erase Button",
+        "links": [
+            "6e1e56c1.71a428"
+        ],
+        "x": 875,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "fd193c87.58c72",
+        "type": "link out",
+        "z": "aecc47c0.144c78",
+        "name": "Enable Export Button",
+        "links": [
+            "677e831d.d2514c"
+        ],
+        "x": 1280,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "677e831d.d2514c",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Export Button Enable ",
+        "links": [
+            "fd193c87.58c72"
+        ],
+        "x": 135,
+        "y": 860,
+        "wires": [
+            [
+                "d1043ab6.bd7998"
+            ]
+        ]
+    },
+    {
+        "id": "8119211.599b6e",
+        "type": "subflow:b0e801e.0db82",
+        "z": "aecc47c0.144c78",
+        "name": "",
+        "env": [],
+        "x": 1170,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eca7cc74.5377",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Init button",
+        "func": "flow.set('movieRunning',false);\nreturn {'topic':'Movie', 'payload':''};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "6941ddd5.309554"
+            ]
+        ]
+    },
+    {
+        "id": "4c4791d1.4262d",
+        "type": "link in",
+        "z": "aecc47c0.144c78",
+        "name": "Init",
+        "links": [
+            "d4bbd794.b49c98"
+        ],
+        "x": 75,
+        "y": 140,
+        "wires": [
+            [
+                "eca7cc74.5377"
+            ]
+        ]
+    },
+    {
+        "id": "fddce04c.79273",
+        "type": "exec",
+        "z": "aecc47c0.144c78",
+        "command": "pkill raspivid",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Stop Camera",
+        "x": 610,
+        "y": 100,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c3fd64ae.f73268",
+        "type": "function",
+        "z": "4c830eaa.25d9d",
+        "name": "Disable Movie button",
+        "func": "var newMsg = {};\nif (msg.topic == 'Abort') newMsg = {topic:'Movie',payload:'',enabled:false};\nif (msg.topic == 'Timelapse') newMsg = {topic:'Movie',payload:'',enabled:true};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1380,
+        "y": 80,
+        "wires": [
+            [
+                "405c89cb.a655d8"
+            ]
+        ]
+    },
+    {
+        "id": "405c89cb.a655d8",
+        "type": "link out",
+        "z": "4c830eaa.25d9d",
+        "name": "",
+        "links": [
+            "b9f6c776.cbcbb8"
+        ],
+        "x": 1535,
+        "y": 100,
         "wires": []
     }
 ]
