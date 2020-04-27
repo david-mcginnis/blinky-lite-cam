@@ -11,6 +11,7 @@ NODEREDSECRET=xxxx<br>
 on usb stick there must be a directory blinky-lite-cam-data
 
 ## extra installation
+sudo apt-get install ffmpeg<br/>
 sudo apt-get install zip<br/>
 sudo apt-get install usbmount<br/>
 changing MountFlags=slave to MountFlags=shared at:<br/>

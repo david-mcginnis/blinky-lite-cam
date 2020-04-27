@@ -3733,13 +3733,14 @@
         "z": "465cfd27.107674",
         "name": "displayValue",
         "label": "",
+        "tooltip": "",
         "group": "5119bf0d.949f3",
         "order": 5,
         "width": "2",
         "height": "1",
-        "passthru": false,
+        "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "0",
         "topic": "displayValue",
         "x": 190,
         "y": 380,
@@ -3917,8 +3918,7 @@
         "links": [
             "8ab40235.9f40c",
             "dd215dc9.e71ff",
-            "e8d4d65e.9e0298",
-            "91ba0d1b.35787"
+            "e8d4d65e.9e0298"
         ],
         "x": 55,
         "y": 380,
@@ -5053,7 +5053,7 @@
         "type": "function",
         "z": "aecc47c0.144c78",
         "name": "compile settings",
-        "func": "var abortMovieMsg = null;\nvar runMovieMsg = null;\n\nif (!flow.get('movieRunning'))\n{\n    var cameraSettings = global.get('cameraSettings');\n    var movieSettings = global.get('movieSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in movieSettings)\n    {\n        if (movieSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + movieSettings[key].value;\n    }\n    commandString = commandString + ' -o ' + global.get('imageStorageLocation') + '/latest.h264';\n    runMovieMsg = {topic:'Abort', payload:commandString };\n    flow.set('movieRunning',true);\n}\nelse\n{\n    abortMovieMsg  = {topic:'Movie', payload:\"\" };\n    flow.set('movieRunning',false);\n}\n//node.warn('raspistill ' + msg.payload);\n\nreturn [runMovieMsg, abortMovieMsg];",
+        "func": "var abortMovieMsg = null;\nvar runMovieMsg = null;\n\nif (!flow.get('movieRunning'))\n{\n    var cameraSettings = global.get('cameraSettings');\n    var movieSettings = global.get('movieSettings');\n    var commandString = '';\n    for (var key in cameraSettings)\n    {\n        if (cameraSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + cameraSettings[key].value;\n    }\n    for (var key in movieSettings)\n    {\n        if (movieSettings[key].enabled)\n            commandString = commandString + ' -'+ key + ' ' + movieSettings[key].value;\n    }\n    commandString = commandString + ' -o ' + global.get('imageStorageLocation') + '/latest.h264';\n    runMovieMsg = {topic:'Abort', payload:commandString };\n    flow.set('movieRunning',true);\n}\nelse\n{\n    abortMovieMsg  = {topic:'Movie', payload:\"\", enabled:false };\n    flow.set('movieRunning',false);\n}\n//node.warn('raspistill ' + msg.payload);\n\nreturn [runMovieMsg, abortMovieMsg];",
         "outputs": 2,
         "noerr": 0,
         "x": 320,
@@ -5073,7 +5073,7 @@
         "id": "71c3d31a.9012ec",
         "type": "exec",
         "z": "aecc47c0.144c78",
-        "command": "cp ",
+        "command": "ffmpeg -f h264 ",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
@@ -5086,7 +5086,8 @@
             [],
             [],
             [
-                "4bbaedc7.729d64"
+                "4bbaedc7.729d64",
+                "49fd88b2.b87a88"
             ]
         ]
     },
@@ -5095,11 +5096,11 @@
         "type": "function",
         "z": "aecc47c0.144c78",
         "name": "Incr Movie",
-        "func": "var movieCounter = global.get('movieCounter');\nvar counter = Number(movieCounter) + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nmovieCounter = prefix + counter.toString();\nglobal.set('movieCounter', movieCounter);\nvar currentCount = {'topic':'movieCounter','payload':movieCounter};\nmsg.payload = global.get('imageStorageLocation') + '/latest.h264'  +  ' '  + global.get('imageStorageLocation') + '/movies/mov' + movieCounter + '.h264';\nreturn [msg, currentCount];",
+        "func": "var movieCounter = global.get('movieCounter');\nvar counter = Number(movieCounter) + 1;\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nmovieCounter = prefix + counter.toString();\nglobal.set('movieCounter', movieCounter);\nvar currentCount = {'topic':'movieCounter','payload':movieCounter};\n//msg.payload = global.get('imageStorageLocation') + '/latest.h264'  +  ' '  + global.get('imageStorageLocation') + '/movies/mov' + movieCounter + '.h264';\nmsg.payload =  ' -i ' + global.get('imageStorageLocation') + '/latest.h264' + ' -c:v copy ' + global.get('imageStorageLocation') + '/movies/mov' + movieCounter + '.mp4';\nreturn [msg, currentCount];\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 850,
-        "y": 80,
+        "x": 830,
+        "y": 60,
         "wires": [
             [
                 "71c3d31a.9012ec"
@@ -5176,7 +5177,7 @@
         "order": 2,
         "width": "6",
         "height": "6",
-        "format": "<script type=\"text/javascript\">\n//var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);\nif (!!navigator.platform && /iPhone/.test(navigator.platform))\n{\n    $(\"#image\").attr(\"height\", \"260\");\n    $(\"#image\").attr(\"width\",  \"347\");\n    \n}\n</script>\n<div>\n    <table>\n        <tbody>\n            <tr align=\"center\">\n                <td align=\"center\">\n                    <img id=\"image\" src='{{msg.payload.image}}' width=\"100%\" >\n                </td>\n            </tr>\n            <tr align=\"center\">\n                <td id=\"imageDate\" align=\"center\">\n                   {{msg.payload.date}}\n                </td>\n            </tr>        \n        </tbody>\n    </table>\n</div>",
+        "format": "<script type=\"text/javascript\">\n//var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);\nif (!!navigator.platform && /iPhone/.test(navigator.platform))\n{\n    $(\"#image\").attr(\"height\", \"260\");\n    $(\"#image\").attr(\"width\",  \"347\");\n    \n}\n</script>\n<div>\n    <table>\n        <tbody>\n            <tr align=\"center\">\n                <td align=\"center\">\n                    <video width=\"800\" height=\"600\" controls>\n                      <source src=\"{{msg.payload.image}}\" type=\"video/mp4\">\n                    </video>                \n                </td>\n            </tr>\n            <tr align=\"center\">\n                <td id=\"imageDate\" align=\"center\">\n                   {{msg.payload.date}}\n                </td>\n            </tr>        \n        </tbody>\n    </table>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -5467,9 +5468,9 @@
         "order": 5,
         "width": "2",
         "height": "1",
-        "passthru": false,
+        "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "0",
         "topic": "displayValue",
         "x": 270,
         "y": 400,
@@ -5552,7 +5553,7 @@
         "type": "function",
         "z": "aecc47c0.144c78",
         "name": "Get Display Value",
-        "func": "var movieCounter = Number(global.get('movieCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  movieCounter) counter = movieCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = global.get('imageStorageLocation');\nvar displayFileName  = '/movie/mov' + counterText + '.jpg'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
+        "func": "var movieCounter = Number(global.get('movieCounter'));\nvar counter = 0;\nif (msg.topic == 'displayValue')\n{\n    counter = Number(msg.payload);\n}\nelse\n{\n    counter = context.get('displayValue');\n    counter = counter + msg.payload;\n}\nif (counter < 0) counter = 0;\nif (counter >  movieCounter) counter = movieCounter;\ncontext.set('displayValue', counter);\nvar prefix = '';\nif (counter < 1000) prefix = prefix + '0';\nif (counter < 100) prefix = prefix + '0';\nif (counter < 10) prefix = prefix + '0';\nvar counterText = prefix + counter.toString();\nvar rootdirectory = global.get('imageStorageLocation');\nvar displayFileName  = '/movies/mov' + counterText + '.mp4'\nvar newMsg1 = {'topic':'displayFileName','payload':rootdirectory + displayFileName};\nvar newMsg2 = {'topic':'displayValue','payload':counterText};\nflow.set('displayFileName', displayFileName);\nreturn [newMsg1, newMsg2];",
         "outputs": 2,
         "noerr": 0,
         "x": 490,
@@ -5615,7 +5616,7 @@
         "type": "function",
         "z": "aecc47c0.144c78",
         "name": "Add Timestamp",
-        "func": "var timestampNow = new Date();\nvar fileName = flow.get('displayFileName');\nvar fileTimeStamp = msg.payload.split('\\n')[0];\nvar imageName = fileName+ '?time=' + timestampNow.getTime().toString();\nvar newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':fileTimeStamp}};\nreturn newMsg;\n",
+        "func": "var timestampNow = new Date();\nvar fileName = flow.get('displayFileName');\nvar fileTimeStamp = msg.payload.split('\\n')[0];\n//var imageName = fileName+ '?time=' + timestampNow.getTime().toString();\nvar imageName = fileName;\nvar newMsg = {'topic':'timestamp', 'payload':{'image':imageName,'date':fileTimeStamp}};\nreturn newMsg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 880,
@@ -5631,7 +5632,7 @@
         "type": "function",
         "z": "aecc47c0.144c78",
         "name": "movies",
-        "func": "msg.payload = global.get('imageStorageLocation') + '/movies/*.h264';\nreturn msg;",
+        "func": "msg.payload = global.get('imageStorageLocation') + '/movies/*.*';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 380,
@@ -5752,9 +5753,9 @@
         "z": "aecc47c0.144c78",
         "name": "Movie Counter Display Value",
         "links": [
+            "270eb2fc.f2d47e",
             "eaff315b.394e4",
-            "fd81ac6a.221df",
-            "270eb2fc.f2d47e"
+            "fd81ac6a.221df"
         ],
         "x": 135,
         "y": 400,
@@ -5785,7 +5786,8 @@
         "name": "Movie Button Enable",
         "links": [
             "6941ddd5.309554",
-            "405c89cb.a655d8"
+            "405c89cb.a655d8",
+            "8a9aa042.9b178"
         ],
         "x": 75,
         "y": 60,
@@ -5964,6 +5966,34 @@
         ],
         "x": 1535,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "49fd88b2.b87a88",
+        "type": "function",
+        "z": "aecc47c0.144c78",
+        "name": "Reset Movie button to Movie",
+        "func": "var newMsg = {topic:'Movie', payload:\"\", enabled:true };\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1260,
+        "y": 20,
+        "wires": [
+            [
+                "8a9aa042.9b178"
+            ]
+        ]
+    },
+    {
+        "id": "8a9aa042.9b178",
+        "type": "link out",
+        "z": "aecc47c0.144c78",
+        "name": "Reset Movie button to Movie",
+        "links": [
+            "b9f6c776.cbcbb8"
+        ],
+        "x": 1415,
+        "y": 20,
         "wires": []
     }
 ]
