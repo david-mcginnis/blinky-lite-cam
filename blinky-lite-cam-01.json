@@ -1,0 +1,133 @@
+{
+  "deviceType": "blinky-lite-cam",
+  "name": "01",
+  "arcPeriod": 60000,
+  "timeStamp": 1589778569183,
+  "lastArchive": 1584283329231,
+  "linkQuality": {
+    "action": "reading",
+    "type": "scalar",
+    "value": 64,
+    "unit": "/70",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": 30,
+        "low": 40,
+        "high": 71,
+        "hihi": 80
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    }
+  },
+  "signalLevel": {
+    "action": "reading",
+    "type": "scalar",
+    "value": -46,
+    "unit": "dBm",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -70,
+        "low": -60,
+        "high": 0,
+        "hihi": 30
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    }
+  },
+  "takeImage": {
+    "action": "setting",
+    "type": "scalar",
+    "value": 1,
+    "unit": "unit",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -2,
+        "low": -1,
+        "high": 2,
+        "hihi": 3
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    }
+  },
+  "config": {
+    "rot": {
+      "value": "270",
+      "enabled": true
+    },
+    "h": {
+      "value": 600,
+      "enabled": true
+    },
+    "w": {
+      "value": 800,
+      "enabled": true
+    },
+    "t": {
+      "value": 1,
+      "enabled": true
+    },
+    "ifx": {
+      "value": "sketch",
+      "enabled": false
+    },
+    "ex": {
+      "value": "off",
+      "enabled": false
+    },
+    "awb": {
+      "value": "off",
+      "enabled": false
+    },
+    "mm": {
+      "value": "average",
+      "enabled": false
+    },
+    "sh": {
+      "value": 0,
+      "enabled": false
+    },
+    "co": {
+      "value": 0,
+      "enabled": false
+    },
+    "br": {
+      "value": 0,
+      "enabled": false
+    },
+    "sa": {
+      "value": 0,
+      "enabled": false
+    },
+    "ISO": {
+      "value": 0,
+      "enabled": false
+    },
+    "ev": {
+      "value": 0,
+      "enabled": false
+    },
+    "ss": {
+      "value": 0,
+      "enabled": false
+    },
+    "cfx": {
+      "value": "0",
+      "enabled": false
+    }
+  }
+}

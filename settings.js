@@ -100,15 +100,15 @@ module.exports = {
     // When httpAdminRoot is used to move the UI to a different root path, the
     // following property can be used to identify a directory of static content
     // that should be served at http://localhost:1880/.
-//    httpStatic: '/media/pi/blinky-lite-cam/images/',
-     httpStatic: process.env.IMAGESTORAGELOCATION,
+    httpStatic: 'html-static/',
+
     // The maximum size of HTTP request that will be accepted by the runtime api.
     // Default: 5mb
     //apiMaxLength: '5mb',
 
     // If you installed the optional node-red-dashboard you can set it's path
     // relative to httpRoot
-    ui: { path: "/" },
+    ui: { path: "ui" },
 
     // Securing Node-RED
     // -----------------
@@ -127,8 +127,8 @@ module.exports = {
     // the static content (httpStatic), the following properties can be used.
     // The pass field is a bcrypt hash of the password.
     // See http://nodered.org/docs/security.html#generating-the-password-hash
-    // httpNodeAuth: {user:"yggcam",pass:"$2a$08$XmmZtmP2RYcgUpr5v0yQr.tDWgLs.oqRkLGhLh5FiTH34EKnmt4/e"},
-    // httpStaticAuth: {user:"yggcam",pass:"$2a$08$XmmZtmP2RYcgUpr5v0yQr.tDWgLs.oqRkLGhLh5FiTH34EKnmt4/e"},
+    // httpNodeAuth: {user:"user",pass:"$2a$08$KaclKnSDZ7.pGtci1ZSOIep/Dqu582RURal12L7kbJ1bnv/SYPNFq"},
+    // httpStaticAuth: {user:"user",pass:"$2a$08$KaclKnSDZ7.pGtci1ZSOIep/Dqu582RURal12L7kbJ1bnv/SYPNFq"},
 
     // The following property can be used to enable HTTPS
     // See http://nodejs.org/api/https.html#https_https_createserver_options_requestlistener
