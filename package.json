@@ -21,6 +21,6 @@
   "homepage": "https://github.com/yggdrasilView/yggdrasilview-node-red-empty#readme",
   "dependencies": {
     "node-red": "^1.0.4",
-    "node-red-dashboard": "^2.19.4"
+    "node-red-dashboard": "^2.26.2"
   }
 }
