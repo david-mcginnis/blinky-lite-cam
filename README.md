@@ -14,5 +14,5 @@ on usb stick there must be a directory blinky-lite-cam-data
 sudo apt-get install ffmpeg<br/>
 sudo apt-get install zip<br/>
 sudo apt-get install usbmount<br/>
-changing MountFlags=slave to MountFlags=shared at:<br/>
+changing PrivateMounts=yes to PrivateMounts=no at:<br/>
 sudo nano /lib/systemd/system/systemd-udevd.service<br/>
